@@ -3,6 +3,10 @@
     <div class="title">
       <h2>ステータス</h2>
     </div>
+    <div class="dice-area">
+      <button class="dice-button" @click="diceroll"></button>
+      <p>👈 ランダム設定</p>
+    </div>
     <table>
       <thead>
         <tr>
@@ -147,10 +151,11 @@ export default {
       return this.calclatedStatusSheet.reduce((acc, status) => {
         acc[status.displayName] = { ...status };
         if (status.displayName == "HP") {
-          acc[status.displayName].default =
+          acc[status.displayName].default = Math.ceil(
             (this.definedCommonStatusSheet.CON.value +
               this.definedCommonStatusSheet.SIZ.value) /
-            2;
+              2
+          );
         } else if (status.displayName == "MP") {
           acc[status.displayName].default =
             this.definedCommonStatusSheet.POW.value * 1;
@@ -187,6 +192,35 @@ export default {
       };
     },
   },
+  methods: {
+    diceroll() {
+      this.commonStatusSheet.forEach((status) => {
+        if (
+          status.displayName == "STR" ||
+          status.displayName == "CON" ||
+          status.displayName == "POW" ||
+          status.displayName == "DEX" ||
+          status.displayName == "APP"
+        ) {
+          status.default =
+            Math.floor(Math.random() * 6 + 1) +
+            Math.floor(Math.random() * 6 + 1) +
+            Math.floor(Math.random() * 6 + 1);
+        } else if (status.displayName == "SIZ" || status.displayName == "INT") {
+          status.default =
+            Math.floor(Math.random() * 6 + 1) +
+            Math.floor(Math.random() * 6 + 1) +
+            6;
+        } else if (status.displayName == "EDU") {
+          status.default =
+            Math.floor(Math.random() * 6 + 1) +
+            Math.floor(Math.random() * 6 + 1) +
+            Math.floor(Math.random() * 6 + 1) +
+            3;
+        }
+      });
+    },
+  },
 };
 </script>
 
@@ -204,6 +238,22 @@ export default {
   display: flex;
   flex-direction: row;
   align-items: center;
+}
+.dice-area {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.dice-button {
+  width: 50px;
+  height: 50px;
+  border: none;
+  background-color: transparent;
+  background-image: url("../assets/dice.svg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 table,
 thead,
