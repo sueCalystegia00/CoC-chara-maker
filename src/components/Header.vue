@@ -23,6 +23,6 @@ export default {
   color: #ffffff;
 }
 h1 {
-  margin: 0;
+  font-size: 1.3rem;
 }
 </style>

@@ -7,7 +7,7 @@
 
 <script>
 import "normalize.css";
-import Header from "./components/Header.vue";
+import Header from "@/components/Header.vue";
 export default {
   name: "App",
   components: {
@@ -30,5 +30,13 @@ body,
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  margin: 5px;
 }
 </style>

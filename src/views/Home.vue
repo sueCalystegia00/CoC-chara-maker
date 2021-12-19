@@ -1,21 +1,43 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    {{ jobslist }}
+    <div class="describe">
+      <p>クトゥルフキャラシートを作成しよう</p>
+      <p>👇</p>
+    </div>
+    <Status />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import jobsList from "@/assets/jobsList.json";
+import Status from "@/components/Status.vue";
 
 export default {
   name: "Home",
-  components: {},
+  components: {
+    Status,
+  },
   data() {
-    return {
-      jobslist: jobsList,
-    };
+    return {};
   },
 };
 </script>
+
+<style>
+.home {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.describe {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 30px 0;
+}
+</style>
