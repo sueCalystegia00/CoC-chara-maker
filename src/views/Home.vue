@@ -1,21 +1,20 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    {{ jobslist }}
+    <Status />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import jobsList from "@/assets/jobsList.json";
+import Status from "@/components/Status.vue";
 
 export default {
   name: "Home",
-  components: {},
+  components: {
+    Status,
+  },
   data() {
-    return {
-      jobslist: jobsList,
-    };
+    return {};
   },
 };
 </script>

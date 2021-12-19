@@ -22,7 +22,4 @@ export default {
   background-color: #000000;
   color: #ffffff;
 }
-h1 {
-  margin: 0;
-}
 </style>
