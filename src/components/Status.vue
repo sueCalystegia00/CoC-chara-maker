@@ -1,6 +1,8 @@
 <template>
   <div class="status">
-    ステータス
+    <div class="title">
+      <h2>ステータス</h2>
+    </div>
     <table>
       <thead>
         <tr>
@@ -14,12 +16,12 @@
         <tr
           v-for="status in statusList"
           :key="status.displayName"
-          class="status"
+          class="status-row"
         >
-          <th>{{ status.displayName }}</th>
-          <td>{{ status.default }}</td>
-          <td>{{ status.revised }}</td>
-          <td>{{ status.define }}</td>
+          <th class="displayname">{{ status.displayName }}</th>
+          <td class="default">{{ status.default }}</td>
+          <td class="revised">{{ status.revised }}</td>
+          <td class="define">{{ status.define }}</td>
         </tr>
       </tbody>
     </table>
@@ -39,10 +41,40 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.Status {
+.status {
   width: 100%;
+  max-width: 800px;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+.title {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+table,
+thead,
+tbody {
+  width: 100%;
+}
+thead th {
+  font-size: 0.8rem;
+  color: #373737;
+}
+tbody {
+  font-size: 1.2rem;
+}
+tbody th {
+  height: 1.2rem;
+  background-color: #000000;
+  color: #ffffff;
+}
+tbody td {
+  border: 1px solid #cdcdcd;
+}
+.define {
+  background-color: #c4c4c4;
 }
 </style>

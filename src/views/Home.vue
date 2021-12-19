@@ -29,6 +29,8 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 10px;
+  box-sizing: border-box;
 }
 
 .describe {
