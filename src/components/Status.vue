@@ -178,12 +178,27 @@ export default {
       }, {});
     },
     definedSpecStatusSheet() {
+      let damageBonusValue =
+        this.definedCommonStatusSheet.STR.value +
+        this.definedCommonStatusSheet.SIZ.value;
+      let displayDB = "";
+      if (damageBonusValue <= 12) displayDB = "-1D6";
+      else if (damageBonusValue >= 13 && damageBonusValue <= 16)
+        displayDB = "-1D4";
+      else if (damageBonusValue >= 17 && damageBonusValue <= 24)
+        displayDB = "±0";
+      else if (damageBonusValue >= 25 && damageBonusValue <= 32)
+        displayDB = "+1D4";
+      else if (damageBonusValue >= 33 && damageBonusValue <= 40)
+        displayDB = "+1D6";
+      else if (damageBonusValue >= 41 && damageBonusValue <= 56)
+        displayDB = "+2D6";
+      else if (damageBonusValue >= 57) displayDB = "+3D6";
+
       return {
         DB: {
           displayName: "DB",
-          value:
-            this.definedCommonStatusSheet.STR.value +
-            this.definedCommonStatusSheet.SIZ.value,
+          value: displayDB,
         },
         SAN値上限: {
           displayName: "SAN値上限",
