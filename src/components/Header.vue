@@ -22,4 +22,7 @@ export default {
   background-color: #000000;
   color: #ffffff;
 }
+h1 {
+  font-size: 1.3rem;
+}
 </style>
