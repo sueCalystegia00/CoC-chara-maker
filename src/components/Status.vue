@@ -23,8 +23,12 @@
           class="common-status status-row"
         >
           <th class="displayname">{{ commonStatus.displayName }}</th>
-          <td class="default"><input v-model="commonStatus.default" /></td>
-          <td class="revised"><input v-model="commonStatus.revised" /></td>
+          <td class="default">
+            <input type="number" v-model="commonStatus.default" />
+          </td>
+          <td class="revised">
+            <input type="number" v-model="commonStatus.revised" />
+          </td>
           <td class="value unedit">
             {{ definedCommonStatusSheet[commonStatus.displayName].value }}
           </td>
@@ -40,7 +44,9 @@
               definedCalclatedStatusSheet[calclatedStatus.displayName].default
             }}
           </td>
-          <td class="revised"><input v-model="calclatedStatus.revised" /></td>
+          <td class="revised">
+            <input type="number" v-model="calclatedStatus.revised" />
+          </td>
           <td class="value unedit">
             {{ definedCalclatedStatusSheet[calclatedStatus.displayName].value }}
           </td>
@@ -205,6 +211,17 @@ export default {
           value: 99,
         },
       };
+    },
+  },
+  watch: {
+    definedCommonStatusSheet: function (data) {
+      this.$store.commit("setCommonStatusSheet", data);
+    },
+    definedCalclatedStatusSheet: function (data) {
+      this.$store.commit("setCalclatedStatusSheet", data);
+    },
+    definedSpecStatusSheet: function (data) {
+      this.$store.commit("setSpecStatusSheet", data);
     },
   },
   methods: {
