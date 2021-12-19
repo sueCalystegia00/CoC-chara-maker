@@ -5,7 +5,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    status: {
+    statusList: {
       strength: {
         displayName: "STR",
         default: null,
