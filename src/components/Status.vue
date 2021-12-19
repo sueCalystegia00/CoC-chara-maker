@@ -59,6 +59,7 @@
         </tr>
       </tbody>
     </table>
+    {{ definedCommonStatusSheet }}
   </div>
 </template>
 
@@ -205,6 +206,17 @@ export default {
           value: 99,
         },
       };
+    },
+  },
+  watch: {
+    definedCommonStatusSheet: function (data) {
+      this.$store.commit("setCommonStatusSheet", data);
+    },
+    definedCalclatedStatusSheet: function (data) {
+      this.$store.commit("setCalclatedStatusSheet", data);
+    },
+    definedSpecStatusSheet: function (data) {
+      this.$store.commit("setSpecStatusSheet", data);
     },
   },
   methods: {
