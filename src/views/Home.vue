@@ -1,5 +1,9 @@
 <template>
   <div class="home">
+    <div class="describe">
+      <p>クトゥルフキャラシートを作成しよう</p>
+      <p>👇</p>
+    </div>
     <Status />
   </div>
 </template>
@@ -18,3 +22,20 @@ export default {
   },
 };
 </script>
+
+<style>
+.home {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.describe {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 30px 0;
+}
+</style>
