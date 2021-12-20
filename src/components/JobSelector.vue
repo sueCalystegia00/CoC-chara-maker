@@ -1,12 +1,35 @@
 <template>
   <div class="jobselector">
-    <h1>職業選択</h1>
+    <table class="job">
+      <tbody>
+        <tr>
+          <th class="label">職業</th>
+          <td>
+            <select v-model="selectedJobName">
+              <option
+                v-for="(jobName, index) in Object.keys(jobsList)"
+                :key="index"
+              >
+                {{ jobName }}
+              </option>
+            </select>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </template>
 
 <script>
+import jobsListData from "@/assets/jobsList.json";
 export default {
   name: "JobSelector",
+  data() {
+    return {
+      jobsList: jobsListData,
+      selectedJobName: "",
+    };
+  },
 };
 </script>
 
@@ -14,15 +37,29 @@ export default {
 <style scoped>
 .jobselector {
   width: 100%;
-  height: 60px;
+  max-width: 800px;
   display: flex;
-  flex-direction: row;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+}
+.job,
+.job tbody {
+  width: 100%;
+  text-align: center;
+}
+.job tr {
+  height: 30px;
+}
+tbody th {
+  width: 31%;
   background-color: #000000;
   color: #ffffff;
 }
-h1 {
-  font-size: 1.3rem;
+tbody td {
+  border: 1px solid #cdcdcd;
+}
+
+select {
+  width: 100%;
 }
 </style>
