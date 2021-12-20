@@ -1,22 +1,14 @@
 <template>
   <div class="jobselector">
-    <table class="job">
-      <tbody>
-        <tr>
-          <th class="label">職業</th>
-          <td>
-            <select v-model="selectedJobName">
-              <option
-                v-for="(jobName, index) in Object.keys(jobsList)"
-                :key="index"
-              >
-                {{ jobName }}
-              </option>
-            </select>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="job">
+      <div class="label">職業</div>
+      <select v-model="selectedJobName">
+        <option v-for="(jobName, index) in Object.keys(jobsList)" :key="index">
+          {{ jobName }}
+        </option>
+      </select>
+    </div>
+    <div class="job-skill-sheet" v-show="jobSkills">{{ jobSkills }}</div>
   </div>
 </template>
 
@@ -30,6 +22,12 @@ export default {
       selectedJobName: "",
     };
   },
+  computed: {
+    jobSkills() {
+      if (this.selectedJobName == "") return null;
+      return this.jobsList[this.selectedJobName];
+    },
+  },
 };
 </script>
 
@@ -42,24 +40,31 @@ export default {
   flex-direction: column;
   align-items: center;
 }
-.job,
-.job tbody {
+.job {
   width: 100%;
-  text-align: center;
-}
-.job tr {
   height: 30px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
-tbody th {
-  width: 31%;
+.job .label {
+  width: 20%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   background-color: #000000;
   color: #ffffff;
+  font-weight: bold;
 }
-tbody td {
-  border: 1px solid #cdcdcd;
+.job select {
+  width: 80%;
+  height: 100%;
 }
-
-select {
+.job-skill-sheet {
   width: 100%;
+  background: #d3d3d3;
+  line-height: 2rem;
 }
 </style>
