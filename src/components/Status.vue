@@ -312,6 +312,7 @@ tbody td {
 td input {
   width: 100%;
   text-align: center;
+  border: none;
   box-sizing: border-box;
 }
 .unedit {

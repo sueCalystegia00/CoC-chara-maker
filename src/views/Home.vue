@@ -5,17 +5,20 @@
       <p>👇</p>
     </div>
     <Status />
+    <JobSelecotr />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
 import Status from "@/components/Status.vue";
+import JobSelecotr from "@/components/JobSelector.vue";
 
 export default {
   name: "Home",
   components: {
     Status,
+    JobSelecotr,
   },
   data() {
     return {};
@@ -23,13 +26,14 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .home {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 10px;
+  gap: 20px;
   box-sizing: border-box;
 }
 
@@ -38,6 +42,5 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 30px 0;
 }
 </style>
