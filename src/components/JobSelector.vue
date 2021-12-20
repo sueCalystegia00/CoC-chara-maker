@@ -25,7 +25,7 @@ export default {
   computed: {
     jobSkills() {
       if (this.selectedJobName == "") return null;
-      return "---";
+      return this.jobsList[this.selectedJobName];
     },
   },
 };
@@ -65,5 +65,6 @@ export default {
 .job-skill-sheet {
   width: 100%;
   background: #d3d3d3;
+  line-height: 2rem;
 }
 </style>
