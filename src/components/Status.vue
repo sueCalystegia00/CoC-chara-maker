@@ -7,64 +7,80 @@
       <button class="dice-button" @click="diceroll"></button>
       <p>👈 ランダム設定</p>
     </div>
-    <table>
-      <thead>
-        <tr>
-          <th></th>
-          <th>初期値</th>
-          <th>修正値</th>
-          <th>能力値</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr
-          v-for="commonStatus in commonStatusSheet"
-          :key="commonStatus.displayName"
-          class="common-status status-row"
-        >
-          <th class="displayname">{{ commonStatus.displayName }}</th>
-          <td class="default">
-            <input type="number" v-model="commonStatus.default" />
-          </td>
-          <td class="revised">
-            <input type="number" v-model="commonStatus.revised" />
-          </td>
-          <td class="value unedit">
-            {{ definedCommonStatusSheet[commonStatus.displayName].value }}
-          </td>
-        </tr>
-        <tr
-          v-for="calclatedStatus in calclatedStatusSheet"
-          :key="calclatedStatus.displayName"
-          class="calc-status status-row"
-        >
-          <th class="displayname">{{ calclatedStatus.displayName }}</th>
-          <td class="default unedit">
-            {{
-              definedCalclatedStatusSheet[calclatedStatus.displayName].default
-            }}
-          </td>
-          <td class="revised">
-            <input type="number" v-model="calclatedStatus.revised" />
-          </td>
-          <td class="value unedit">
-            {{ definedCalclatedStatusSheet[calclatedStatus.displayName].value }}
-          </td>
-        </tr>
-        <tr
-          v-for="specStatus in definedSpecStatusSheet"
-          :key="specStatus.displayName"
-          class="spec-status status-row"
-        >
-          <th class="displayname">{{ specStatus.displayName }}</th>
-          <td class="unedit"></td>
-          <td class="unedit"></td>
-          <td class="value unedit">
-            {{ specStatus.value }}
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="status-table">
+      <table>
+        <thead>
+          <tr>
+            <th></th>
+            <th>初期値</th>
+            <th>修正値</th>
+            <th>能力値</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            v-for="commonStatus in commonStatusSheet"
+            :key="commonStatus.displayName"
+            class="common-status status-row"
+          >
+            <th class="displayname">{{ commonStatus.displayName }}</th>
+            <td class="default">
+              <input type="number" v-model="commonStatus.default" />
+            </td>
+            <td class="revised">
+              <input type="number" v-model="commonStatus.revised" />
+            </td>
+            <td class="value unedit">
+              {{ definedCommonStatusSheet[commonStatus.displayName].value }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <table>
+        <thead class="option-header">
+          <tr>
+            <th></th>
+            <th>初期値</th>
+            <th>修正値</th>
+            <th>能力値</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            v-for="calclatedStatus in calclatedStatusSheet"
+            :key="calclatedStatus.displayName"
+            class="calc-status status-row"
+          >
+            <th class="displayname">{{ calclatedStatus.displayName }}</th>
+            <td class="default unedit">
+              {{
+                definedCalclatedStatusSheet[calclatedStatus.displayName].default
+              }}
+            </td>
+            <td class="revised">
+              <input type="number" v-model="calclatedStatus.revised" />
+            </td>
+            <td class="value unedit">
+              {{
+                definedCalclatedStatusSheet[calclatedStatus.displayName].value
+              }}
+            </td>
+          </tr>
+          <tr
+            v-for="specStatus in definedSpecStatusSheet"
+            :key="specStatus.displayName"
+            class="spec-status status-row"
+          >
+            <th class="displayname">{{ specStatus.displayName }}</th>
+            <td class="unedit"></td>
+            <td class="unedit"></td>
+            <td class="value unedit">
+              {{ specStatus.value }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
 
@@ -287,6 +303,23 @@ export default {
   background-size: cover;
   background-repeat: no-repeat;
 }
+.status-table {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px 20px;
+}
+/* over iPhone12/13 Pro */
+@media screen and (max-width: 428px) {
+  .option-header {
+    display: none;
+  }
+  .status-table {
+    grid-template-columns: 1fr;
+    gap: 10px 20px;
+  }
+}
+
 table,
 thead,
 tbody {
@@ -298,7 +331,7 @@ thead th {
   color: #373737;
 }
 tbody tr {
-  height: 30px;
+  height: 40px;
 }
 tbody th {
   width: 30%;
@@ -312,6 +345,7 @@ tbody td {
 td input {
   width: 100%;
   text-align: center;
+  border: none;
   box-sizing: border-box;
 }
 .unedit {
