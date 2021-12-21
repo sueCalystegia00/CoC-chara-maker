@@ -1,11 +1,11 @@
 <template>
   <div class="skill-point-checker">
     <div class="job-point">
-      <div class="label">職業ポイント</div>
+      <div class="label">職業P</div>
       <div class="point">◯◯/◯◯</div>
     </div>
     <div class="int-point">
-      <div class="label">興味ポイント</div>
+      <div class="label">興味P</div>
       <div class="point">◯◯/◯◯</div>
     </div>
   </div>
