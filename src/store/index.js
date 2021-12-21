@@ -7,98 +7,113 @@ export default new Vuex.Store({
   state: {
     jobName: "",
     statusList: {
-      commonStatusSheet: [
-        {
+      commonStatusSheet: {
+        strength: {
           displayName: "STR",
-          default: null,
-          revised: null,
+          default: 0,
+          revised: 0,
+          value: 0,
         },
-        {
+        constitution: {
           displayName: "CON",
-          default: null,
-          revised: null,
+          default: 0,
+          revised: 0,
+          value: 0,
         },
-        {
+        power: {
           displayName: "POW",
-          default: null,
-          revised: null,
+          default: 0,
+          revised: 0,
+          value: 0,
         },
-        {
+        dexterity: {
           displayName: "DEX",
-          default: null,
-          revised: null,
+          default: 0,
+          revised: 0,
+          value: 0,
         },
-        {
+        appearance: {
           displayName: "APP",
-          default: null,
-          revised: null,
+          default: 0,
+          revised: 0,
+          value: 0,
         },
-        {
+        size: {
           displayName: "SIZ",
-          default: null,
-          revised: null,
+          default: 0,
+          revised: 0,
+          value: 0,
         },
-        {
+        intelligence: {
           displayName: "INT",
-          default: null,
-          revised: null,
+          default: 0,
+          revised: 0,
+          value: 0,
         },
-        {
+        education: {
           displayName: "EDU",
-          default: null,
-          revised: null,
+          default: 0,
+          revised: 0,
+          value: 0,
         },
-      ],
-      calclatedStatusSheet: [
-        {
+      },
+      calclatedStatusSheet: {
+        hitPoint: {
           displayName: "HP",
-          revised: null,
+          default: 0,
+          revised: 0,
+          value: 0,
         },
-        {
+        magicPoint: {
           displayName: "MP",
-          revised: null,
+          default: 0,
+          revised: 0,
+          value: 0,
         },
-        {
+        sanity: {
           displayName: "SAN",
-          revised: null,
+          default: 0,
+          revised: 0,
+          value: 0,
         },
-        {
+        idea: {
           displayName: "アイデア",
-          revised: null,
+          default: 0,
+          revised: 0,
+          value: 0,
         },
-        {
+        luck: {
           displayName: "幸運",
-          revised: null,
+          default: 0,
+          revised: 0,
+          value: 0,
         },
-        {
+        knowledge: {
           displayName: "知識",
-          revised: null,
+          default: 0,
+          revised: 0,
+          value: 0,
         },
-      ],
-      specStatusSheet: [
-        {
+      },
+      specStatusSheet: {
+        damageBonus: {
           displayName: "DB",
-          define: null,
+          value: "---",
         },
-        {
+        maxSanityPoint: {
           displayName: "SAN値上限",
-          define: null,
+          value: 99,
         },
-      ],
+      },
     },
   },
+  getters: {
+    getStatus: (state) => (sheet) => state.statusList[sheet],
+  },
   mutations: {
-    setJobName(state, payload) {
-      state.jobName = payload;
-    },
-    setCommonStatusSheet(state, data) {
-      state.commonStatusSheet = data;
-    },
-    setCalclatedStatusSheet(state, data) {
-      state.calclatedStatusSheet = data;
-    },
-    setSpecStatusSheet(state, data) {
-      state.specStatusSheet = data;
+    setJobName: (state, payload) => (state.jobName = payload),
+    setStatus: (state, { type, key, values }) => {
+      state.statusList[type][key] = values;
     },
   },
   actions: {},
