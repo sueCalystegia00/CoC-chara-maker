@@ -331,7 +331,7 @@ thead th {
   color: #373737;
 }
 tbody tr {
-  height: 30px;
+  height: 40px;
 }
 tbody th {
   width: 30%;
