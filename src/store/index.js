@@ -5,6 +5,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    jobName: "",
     statusList: {
       commonStatusSheet: [
         {
@@ -87,6 +88,9 @@ export default new Vuex.Store({
     },
   },
   mutations: {
+    setJobName(state, payload) {
+      state.jobName = payload;
+    },
     setCommonStatusSheet(state, data) {
       state.commonStatusSheet = data;
     },

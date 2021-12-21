@@ -2,30 +2,42 @@
   <div class="jobselector">
     <div class="job">
       <div class="label">職業</div>
-      <select v-model="selectedJobName">
-        <option v-for="(jobName, index) in Object.keys(jobsList)" :key="index">
-          {{ jobName }}
-        </option>
-      </select>
+      <v-select
+        class="job-select"
+        @input="setSelectedJobName"
+        :options="Object.keys(jobsList)"
+        :value="jobName"
+      ></v-select>
     </div>
     <div class="job-skill-sheet" v-show="jobSkills">{{ jobSkills }}</div>
   </div>
 </template>
 
 <script>
+import vSelect from "vue-select";
+import "vue-select/dist/vue-select.css";
+import { mapState } from "vuex";
 import jobsListData from "@/assets/jobsList.json";
 export default {
   name: "JobSelector",
+  components: {
+    vSelect,
+  },
   data() {
     return {
       jobsList: jobsListData,
-      selectedJobName: "",
     };
   },
   computed: {
+    ...mapState(["jobName"]),
     jobSkills() {
-      if (this.selectedJobName == "") return null;
-      return this.jobsList[this.selectedJobName];
+      if (this.jobName == "") return null;
+      return this.jobsList[this.jobName];
+    },
+  },
+  methods: {
+    setSelectedJobName(selectedJobName) {
+      this.$store.commit("setJobName", selectedJobName);
     },
   },
 };
@@ -42,7 +54,7 @@ export default {
 }
 .job {
   width: 100%;
-  height: 30px;
+  height: 40px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -58,8 +70,11 @@ export default {
   color: #ffffff;
   font-weight: bold;
 }
-.job select {
+.job-select {
   width: 80%;
+  height: 100%;
+}
+.job-select >>> .vs__dropdown-toggle {
   height: 100%;
 }
 .job-skill-sheet {
