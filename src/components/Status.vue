@@ -363,7 +363,7 @@ export default {
   grid-template-columns: repeat(2, 1fr);
   gap: 10px 20px;
 }
-/* over iPhone12/13 Pro */
+/* スマホ */
 @media screen and (max-width: 428px) {
   .option-header {
     display: none;
@@ -381,7 +381,7 @@ tbody {
   text-align: center;
 }
 thead th {
-  font-size: 0.8rem;
+  font-size: 0.5rem;
   color: #373737;
 }
 tbody tr {

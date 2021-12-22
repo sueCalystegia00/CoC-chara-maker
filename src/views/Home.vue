@@ -6,7 +6,8 @@
     </div>
     <Status />
     <JobSelector />
-    <SkillPoints />
+    <SkillPointsChecker />
+    <SkillSetter />
   </div>
 </template>
 
@@ -14,14 +15,16 @@
 // @ is an alias to /src
 import Status from "@/components/Status.vue";
 import JobSelector from "@/components/JobSelector.vue";
-import SkillPoints from "@/components/SkillPoints.vue";
+import SkillPointsChecker from "@/components/SkillPointsChecker.vue";
+import SkillSetter from "@/components/SkillSetter.vue";
 
 export default {
   name: "Home",
   components: {
     Status,
     JobSelector,
-    SkillPoints,
+    SkillPointsChecker,
+    SkillSetter,
   },
   data() {
     return {};

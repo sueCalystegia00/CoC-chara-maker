@@ -1,111 +1,16 @@
 import Vue from "vue";
 import Vuex from "vuex";
 
+import statusListData from "@/assets/json/statusList.json";
+import abilityListData from "@/assets/json/ abilityList.json";
+
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
     jobName: "",
-    statusList: {
-      commonStatusSheet: {
-        strength: {
-          displayName: "STR",
-          default: 0,
-          revised: 0,
-          value: 0,
-        },
-        constitution: {
-          displayName: "CON",
-          default: 0,
-          revised: 0,
-          value: 0,
-        },
-        power: {
-          displayName: "POW",
-          default: 0,
-          revised: 0,
-          value: 0,
-        },
-        dexterity: {
-          displayName: "DEX",
-          default: 0,
-          revised: 0,
-          value: 0,
-        },
-        appearance: {
-          displayName: "APP",
-          default: 0,
-          revised: 0,
-          value: 0,
-        },
-        size: {
-          displayName: "SIZ",
-          default: 0,
-          revised: 0,
-          value: 0,
-        },
-        intelligence: {
-          displayName: "INT",
-          default: 0,
-          revised: 0,
-          value: 0,
-        },
-        education: {
-          displayName: "EDU",
-          default: 0,
-          revised: 0,
-          value: 0,
-        },
-      },
-      calclatedStatusSheet: {
-        hitPoint: {
-          displayName: "HP",
-          default: 0,
-          revised: 0,
-          value: 0,
-        },
-        magicPoint: {
-          displayName: "MP",
-          default: 0,
-          revised: 0,
-          value: 0,
-        },
-        sanity: {
-          displayName: "SAN",
-          default: 0,
-          revised: 0,
-          value: 0,
-        },
-        idea: {
-          displayName: "アイデア",
-          default: 0,
-          revised: 0,
-          value: 0,
-        },
-        luck: {
-          displayName: "幸運",
-          default: 0,
-          revised: 0,
-          value: 0,
-        },
-        knowledge: {
-          displayName: "知識",
-          default: 0,
-          revised: 0,
-          value: 0,
-        },
-      },
-      specStatusSheet: {
-        damageBonus: {
-          displayName: "DB",
-          value: "---",
-        },
-        maxSanityPoint: {
-          displayName: "SAN値上限",
-          value: 99,
-        },
-      },
-    },
+    statusList: statusListData,
+    abilityList: abilityListData,
     isOverPoint: {
       job: false,
       interest: false,
@@ -113,6 +18,25 @@ export default new Vuex.Store({
   },
   getters: {
     getStatus: (state) => (sheet) => state.statusList[sheet],
+    getUsedPoint: (state) => (pointType) => {
+      const totalUsedPoint = Object.keys(state.abilityList).reduce(
+        (totalUsedPoint, categoryName) => {
+          let usedPoint = Object.keys(state.abilityList[categoryName]).reduce(
+            (usedPoint, skillName) => {
+              usedPoint += Number(
+                state.abilityList[categoryName][skillName][pointType]
+              );
+              return usedPoint;
+            },
+            0
+          );
+          totalUsedPoint += Number(usedPoint);
+          return totalUsedPoint;
+        },
+        0
+      );
+      return totalUsedPoint;
+    },
   },
   mutations: {
     setJobName: (state, payload) => (state.jobName = payload),
@@ -121,6 +45,9 @@ export default new Vuex.Store({
     },
     setIsOverPoint: (state, { type, bool }) => {
       state.isOverPoint[type] = bool;
+    },
+    setSkill: (state, { type, key, values }) => {
+      state.abilityList[type][key] = values;
     },
   },
   actions: {},
