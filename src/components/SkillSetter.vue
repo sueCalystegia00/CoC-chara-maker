@@ -85,9 +85,15 @@ export default {
   watch: {
     "statusList.commonStatusSheet.dexterity.value": function (value) {
       this.abilityList["戦闘技能"]["回避"].default = value * 2;
+      this.inputSkill("戦闘技能", "回避", this.abilityList["戦闘技能"]["回避"]);
     },
     "statusList.commonStatusSheet.education.value": function (value) {
       this.abilityList["交渉技能"]["母国語"].default = value * 5;
+      this.inputSkill(
+        "交渉技能",
+        "母国語",
+        this.abilityList["交渉技能"]["母国語"]
+      );
     },
   },
   methods: {

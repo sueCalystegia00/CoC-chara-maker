@@ -5,7 +5,7 @@
       "jobPoint": 0,
       "intPoint": 0,
       "adjustPoint": 0,
-      "value": 0,
+      "value": null,
       "setPalette": false
     },
     "キック": {
@@ -13,7 +13,7 @@
       "jobPoint": 0,
       "intPoint": 0,
       "adjustPoint": 0,
-      "value": 0,
+      "value": 25,
       "setPalette": false
     },
     "組み付き": {
@@ -21,7 +21,7 @@
       "jobPoint": 0,
       "intPoint": 0,
       "adjustPoint": 0,
-      "value": 0,
+      "value": 25,
       "setPalette": false
     },
     "こぶし": {
@@ -29,7 +29,7 @@
       "jobPoint": 0,
       "intPoint": 0,
       "adjustPoint": 0,
-      "value": 0,
+      "value": 50,
       "setPalette": false
     },
     "頭突き": {
@@ -37,7 +37,7 @@
       "jobPoint": 0,
       "intPoint": 0,
       "adjustPoint": 0,
-      "value": 0,
+      "value": 10,
       "setPalette": false
     },
     "投擲": {
@@ -45,7 +45,7 @@
       "jobPoint": 0,
       "intPoint": 0,
       "adjustPoint": 0,
-      "value": 0,
+      "value": 25,
       "setPalette": false
     },
     "マーシャルアーツ": {
@@ -53,7 +53,7 @@
       "jobPoint": 0,
       "intPoint": 0,
       "adjustPoint": 0,
-      "value": 0,
+      "value": 1,
       "setPalette": false
     },
     "拳銃": {
@@ -61,7 +61,7 @@
       "jobPoint": 0,
       "intPoint": 0,
       "adjustPoint": 0,
-      "value": 0,
+      "value": 20,
       "setPalette": false
     },
     "サブマシンガン": {
@@ -69,7 +69,7 @@
       "jobPoint": 0,
       "intPoint": 0,
       "adjustPoint": 0,
-      "value": 0,
+      "value": 15,
       "setPalette": false
     },
     "ショットガン": {
@@ -77,7 +77,7 @@
       "jobPoint": 0,
       "intPoint": 0,
       "adjustPoint": 0,
-      "value": 0,
+      "value": 30,
       "setPalette": false
     },
     "マシンガン": {
@@ -85,7 +85,7 @@
       "jobPoint": 0,
       "intPoint": 0,
       "adjustPoint": 0,
-      "value": 0,
+      "value": 15,
       "setPalette": false
     },
     "ライフル": {
@@ -93,7 +93,7 @@
       "jobPoint": 0,
       "intPoint": 0,
       "adjustPoint": 0,
-      "value": 0,
+      "value": 25,
       "setPalette": false
     }
   },
@@ -103,7 +103,7 @@
       "jobPoint": 0,
       "intPoint": 0,
       "adjustPoint": 0,
-      "value": 0,
+      "value": 30,
       "setPalette": false
     },
     "鍵開け": {
@@ -111,7 +111,7 @@
       "jobPoint": 0,
       "intPoint": 0,
       "adjustPoint": 0,
-      "value": 0,
+      "value": 1,
       "setPalette": false
     },
     "隠す": {
@@ -119,7 +119,7 @@
       "jobPoint": 0,
       "intPoint": 0,
       "adjustPoint": 0,
-      "value": 0,
+      "value": 15,
       "setPalette": false
     },
     "隠れる": {
@@ -127,7 +127,7 @@
       "jobPoint": 0,
       "intPoint": 0,
       "adjustPoint": 0,
-      "value": 0,
+      "value": 10,
       "setPalette": false
     },
     "聞き耳": {
@@ -135,7 +135,7 @@
       "jobPoint": 0,
       "intPoint": 0,
       "adjustPoint": 0,
-      "value": 0,
+      "value": 25,
       "setPalette": false
     },
     "忍び歩き": {
@@ -143,7 +143,7 @@
       "jobPoint": 0,
       "intPoint": 0,
       "adjustPoint": 0,
-      "value": 0,
+      "value": 10,
       "setPalette": false
     },
     "写真術": {
@@ -151,7 +151,7 @@
       "jobPoint": 0,
       "intPoint": 0,
       "adjustPoint": 0,
-      "value": 0,
+      "value": 10,
       "setPalette": false
     },
     "精神分析": {
@@ -159,7 +159,7 @@
       "jobPoint": 0,
       "intPoint": 0,
       "adjustPoint": 0,
-      "value": 0,
+      "value": 1,
       "setPalette": false
     },
     "追跡": {
@@ -167,7 +167,7 @@
       "jobPoint": 0,
       "intPoint": 0,
       "adjustPoint": 0,
-      "value": 0,
+      "value": 10,
       "setPalette": false
     },
     "登攀": {
@@ -175,7 +175,7 @@
       "jobPoint": 0,
       "intPoint": 0,
       "adjustPoint": 0,
-      "value": 0,
+      "value": 40,
       "setPalette": false
     },
     "図書館": {
@@ -183,7 +183,7 @@
       "jobPoint": 0,
       "intPoint": 0,
       "adjustPoint": 0,
-      "value": 0,
+      "value": 25,
       "setPalette": false
     },
     "目星": {
@@ -191,7 +191,7 @@
       "jobPoint": 0,
       "intPoint": 0,
       "adjustPoint": 0,
-      "value": 0,
+      "value": 25,
       "setPalette": false
     }
   },
@@ -202,7 +202,7 @@
       "jobPoint": 0,
       "intPoint": 0,
       "adjustPoint": 0,
-      "value": 0,
+      "value": 20,
       "setPalette": false
     },
     "機械修理": {
@@ -210,7 +210,7 @@
       "jobPoint": 0,
       "intPoint": 0,
       "adjustPoint": 0,
-      "value": 0,
+      "value": 20,
       "setPalette": false
     },
     "重機械操作": {
@@ -218,7 +218,7 @@
       "jobPoint": 0,
       "intPoint": 0,
       "adjustPoint": 0,
-      "value": 0,
+      "value": 1,
       "setPalette": false
     },
     "乗馬": {
@@ -226,7 +226,7 @@
       "jobPoint": 0,
       "intPoint": 0,
       "adjustPoint": 0,
-      "value": 0,
+      "value": 5,
       "setPalette": false
     },
     "水泳": {
@@ -234,7 +234,7 @@
       "jobPoint": 0,
       "intPoint": 0,
       "adjustPoint": 0,
-      "value": 0,
+      "value": 25,
       "setPalette": false
     },
     "制作": {
@@ -243,7 +243,7 @@
       "jobPoint": 0,
       "intPoint": 0,
       "adjustPoint": 0,
-      "value": 0,
+      "value": 5,
       "setPalette": false
     },
     "操縦": {
@@ -252,7 +252,7 @@
       "jobPoint": 0,
       "intPoint": 0,
       "adjustPoint": 0,
-      "value": 0,
+      "value": 1,
       "setPalette": false
     },
     "跳躍": {
@@ -260,7 +260,7 @@
       "jobPoint": 0,
       "intPoint": 0,
       "adjustPoint": 0,
-      "value": 0,
+      "value": 25,
       "setPalette": false
     },
     "電気修理": {
@@ -268,7 +268,7 @@
       "jobPoint": 0,
       "intPoint": 0,
       "adjustPoint": 0,
-      "value": 0,
+      "value": 10,
       "setPalette": false
     },
     "ナビゲート": {
@@ -276,7 +276,7 @@
       "jobPoint": 0,
       "intPoint": 0,
       "adjustPoint": 0,
-      "value": 0,
+      "value": 10,
       "setPalette": false
     },
     "変装": {
@@ -284,7 +284,7 @@
       "jobPoint": 0,
       "intPoint": 0,
       "adjustPoint": 0,
-      "value": 0,
+      "value": 1,
       "setPalette": false
     }
   },
@@ -294,7 +294,7 @@
       "jobPoint": 0,
       "intPoint": 0,
       "adjustPoint": 0,
-      "value": 0,
+      "value": 5,
       "setPalette": false
     },
     "信用": {
@@ -302,7 +302,7 @@
       "jobPoint": 0,
       "intPoint": 0,
       "adjustPoint": 0,
-      "value": 0,
+      "value": 15,
       "setPalette": false
     },
     "説得": {
@@ -310,7 +310,7 @@
       "jobPoint": 0,
       "intPoint": 0,
       "adjustPoint": 0,
-      "value": 0,
+      "value": 15,
       "setPalette": false
     },
     "値切り": {
@@ -318,7 +318,7 @@
       "jobPoint": 0,
       "intPoint": 0,
       "adjustPoint": 0,
-      "value": 0,
+      "value": 5,
       "setPalette": false
     },
     "母国語": {
@@ -327,7 +327,7 @@
       "jobPoint": 0,
       "intPoint": 0,
       "adjustPoint": 0,
-      "value": 0,
+      "value": null,
       "setPalette": false
     },
     "言語": {
@@ -336,7 +336,7 @@
       "jobPoint": 0,
       "intPoint": 0,
       "adjustPoint": 0,
-      "value": 0,
+      "value": 1,
       "setPalette": false
     }
   },
@@ -346,7 +346,7 @@
       "jobPoint": 0,
       "intPoint": 0,
       "adjustPoint": 0,
-      "value": 0,
+      "value": 5,
       "setPalette": false
     },
     "オカルト": {
@@ -354,7 +354,7 @@
       "jobPoint": 0,
       "intPoint": 0,
       "adjustPoint": 0,
-      "value": 0,
+      "value": 5,
       "setPalette": false
     },
     "化学": {
@@ -362,7 +362,7 @@
       "jobPoint": 0,
       "intPoint": 0,
       "adjustPoint": 0,
-      "value": 0,
+      "value": 1,
       "setPalette": false
     },
     "クトゥルフ神話": {
@@ -379,7 +379,7 @@
       "jobPoint": 0,
       "intPoint": 0,
       "adjustPoint": 0,
-      "value": 0,
+      "value": 5,
       "setPalette": false
     },
     "経理": {
@@ -387,7 +387,7 @@
       "jobPoint": 0,
       "intPoint": 0,
       "adjustPoint": 0,
-      "value": 0,
+      "value": 10,
       "setPalette": false
     },
     "考古学": {
@@ -395,7 +395,7 @@
       "jobPoint": 0,
       "intPoint": 0,
       "adjustPoint": 0,
-      "value": 0,
+      "value": 1,
       "setPalette": false
     },
     "コンピューター": {
@@ -403,7 +403,7 @@
       "jobPoint": 0,
       "intPoint": 0,
       "adjustPoint": 0,
-      "value": 0,
+      "value": 1,
       "setPalette": false
     },
     "心理学": {
@@ -411,7 +411,7 @@
       "jobPoint": 0,
       "intPoint": 0,
       "adjustPoint": 0,
-      "value": 0,
+      "value": 5,
       "setPalette": false
     },
     "人類学": {
@@ -419,7 +419,7 @@
       "jobPoint": 0,
       "intPoint": 0,
       "adjustPoint": 0,
-      "value": 0,
+      "value": 1,
       "setPalette": false
     },
     "生物学": {
@@ -427,7 +427,7 @@
       "jobPoint": 0,
       "intPoint": 0,
       "adjustPoint": 0,
-      "value": 0,
+      "value": 1,
       "setPalette": false
     },
     "地質学": {
@@ -435,7 +435,7 @@
       "jobPoint": 0,
       "intPoint": 0,
       "adjustPoint": 0,
-      "value": 0,
+      "value": 1,
       "setPalette": false
     },
     "電子工学": {
@@ -443,7 +443,7 @@
       "jobPoint": 0,
       "intPoint": 0,
       "adjustPoint": 0,
-      "value": 0,
+      "value": 1,
       "setPalette": false
     },
     "天文学": {
@@ -451,7 +451,7 @@
       "jobPoint": 0,
       "intPoint": 0,
       "adjustPoint": 0,
-      "value": 0,
+      "value": 1,
       "setPalette": false
     },
     "博物学": {
@@ -459,7 +459,7 @@
       "jobPoint": 0,
       "intPoint": 0,
       "adjustPoint": 0,
-      "value": 0,
+      "value": 10,
       "setPalette": false
     },
     "物理学": {
@@ -467,7 +467,7 @@
       "jobPoint": 0,
       "intPoint": 0,
       "adjustPoint": 0,
-      "value": 0,
+      "value": 1,
       "setPalette": false
     },
     "法律": {
@@ -475,7 +475,7 @@
       "jobPoint": 0,
       "intPoint": 0,
       "adjustPoint": 0,
-      "value": 0,
+      "value": 5,
       "setPalette": false
     },
     "薬学": {
@@ -483,7 +483,7 @@
       "jobPoint": 0,
       "intPoint": 0,
       "adjustPoint": 0,
-      "value": 0,
+      "value": 1,
       "setPalette": false
     },
     "歴史": {
@@ -491,7 +491,7 @@
       "jobPoint": 0,
       "intPoint": 0,
       "adjustPoint": 0,
-      "value": 0,
+      "value": 20,
       "setPalette": false
     }
   }
