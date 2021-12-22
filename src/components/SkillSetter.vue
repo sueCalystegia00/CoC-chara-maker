@@ -26,11 +26,11 @@
             class="skill-row"
           >
             <th class="displayname">{{ skillName }}</th>
-            <td class="default"></td>
+            <td class="default unedit">{{ skill.default }}</td>
             <td class="job-point"></td>
             <td class="int-point"></td>
             <td class="revised"></td>
-            <td class="value"></td>
+            <td class="value unedit"></td>
           </tr>
         </tbody>
       </table>
@@ -51,12 +51,13 @@ export default {
   computed: {
     ...mapState(["statusList"]),
   },
-  mounted() {
-    // ↓不十分，修正予定
-    this.abilityList["戦闘技能"]["回避"].default =
-      this.statusList.commonStatusSheet.dexterity.value * 2;
-    this.abilityList["交渉技能"]["母国語"].default =
-      this.statusList.commonStatusSheet.education.value * 5;
+  watch: {
+    "statusList.commonStatusSheet.dexterity.value": function (value) {
+      this.abilityList["戦闘技能"]["回避"].default = value * 2;
+    },
+    "statusList.commonStatusSheet.education.value": function (value) {
+      this.abilityList["交渉技能"]["母国語"].default = value * 5;
+    },
   },
 };
 </script>
@@ -109,5 +110,8 @@ tbody td {
   width: 14%;
   height: 100%;
   border: 1px solid #cdcdcd;
+}
+.unedit {
+  background-color: #c4c4c4;
 }
 </style>

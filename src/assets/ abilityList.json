@@ -1,7 +1,7 @@
 {
   "戦闘技能" : {
     "回避": {
-      "default": "dex*2"
+      "default": "DEX×2"
     },
     "キック": {
       "default": 25
@@ -127,7 +127,7 @@
       "default": 5
     },
     "母国語": {
-      "default": "edu*5",
+      "default": "EDU×5",
       "option": ""
     },
     "言語": {
