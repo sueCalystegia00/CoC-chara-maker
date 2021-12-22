@@ -125,6 +125,9 @@ export default new Vuex.Store({
     setIsOverPoint: (state, { type, bool }) => {
       state.isOverPoint[type] = bool;
     },
+    setSkill: (state, { type, key, values }) => {
+      state.abilityList[type][key] = values;
+    },
   },
   actions: {},
   modules: {},

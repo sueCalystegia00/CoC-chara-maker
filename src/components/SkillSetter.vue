@@ -32,19 +32,32 @@
                 v-if="'option' in skill"
                 class="skill-option-name"
                 v-model="skill.option"
+                @input="inputSkill(category, skillName, skill)"
               />
             </th>
             <td class="default unedit">{{ skill.default }}</td>
             <td class="job-point">
-              <input type="number" v-model="skill.jobPoint" />
+              <input
+                type="number"
+                v-model="skill.jobPoint"
+                @input="inputSkill(category, skillName, skill)"
+              />
             </td>
             <td class="int-point">
-              <input type="number" v-model="skill.intPoint" />
+              <input
+                type="number"
+                v-model="skill.intPoint"
+                @input="inputSkill(category, skillName, skill)"
+              />
             </td>
             <td class="adjust">
-              <input type="number" v-model="skill.adjustPoint" />
+              <input
+                type="number"
+                v-model="skill.adjustPoint"
+                @input="inputSkill(category, skillName, skill)"
+              />
             </td>
-            <td class="value unedit"></td>
+            <td class="value unedit">{{ skill.value }}</td>
           </tr>
         </tbody>
       </table>
@@ -66,6 +79,21 @@ export default {
     },
     "statusList.commonStatusSheet.education.value": function (value) {
       this.abilityList["交渉技能"]["母国語"].default = value * 5;
+    },
+  },
+  methods: {
+    inputSkill(typeName, keyName, skillValues) {
+      let setValues = { ...skillValues };
+      setValues.value =
+        Number(skillValues.default) +
+        Number(skillValues.jobPoint) +
+        Number(skillValues.intPoint) +
+        Number(skillValues.adjustPoint);
+      this.$store.commit("setSkill", {
+        type: typeName,
+        key: keyName,
+        values: setValues,
+      });
     },
   },
 };
