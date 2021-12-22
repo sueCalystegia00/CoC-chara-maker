@@ -2,11 +2,13 @@
   <div class="skill-points">
     <div class="job-point">
       <div class="label">職業P</div>
-      <div class="point">◯◯/{{ totalJobSkillPoint }}</div>
+      <div class="point">{{ usedJobSkillPoint }}/{{ totalJobSkillPoint }}</div>
     </div>
     <div class="int-point">
       <div class="label">興味P</div>
-      <div class="point">◯◯/{{ totalInterestSkillPoint }}</div>
+      <div class="point">
+        {{ usedInterestSkillPoint }}/{{ totalInterestSkillPoint }}
+      </div>
     </div>
   </div>
 </template>
@@ -15,6 +17,16 @@
 import { mapState } from "vuex";
 export default {
   name: "SkillPointChecker",
+  props: {
+    usedJobSkillPoint: {
+      type: Number,
+      default: 0,
+    },
+    usedInterestSkillPoint: {
+      type: Number,
+      default: 0,
+    },
+  },
   computed: {
     ...mapState(["statusList"]),
     totalJobSkillPoint() {
