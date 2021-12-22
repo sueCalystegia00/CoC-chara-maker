@@ -2,11 +2,13 @@
   <div class="skill-points">
     <div class="job-point">
       <div class="label">職業P</div>
-      <div class="point">{{ usedJobSkillPoint }}/{{ totalJobSkillPoint }}</div>
+      <div class="point-value" :class="{ over: isOverJobSkillPoint }">
+        {{ usedJobSkillPoint }}/{{ totalJobSkillPoint }}
+      </div>
     </div>
     <div class="int-point">
       <div class="label">興味P</div>
-      <div class="point">
+      <div class="point-value" :class="{ over: isOverInterestSkillPoint }">
         {{ usedInterestSkillPoint }}/{{ totalInterestSkillPoint }}
       </div>
     </div>
@@ -34,6 +36,16 @@ export default {
     },
     totalInterestSkillPoint() {
       return this.statusList.commonStatusSheet.intelligence.value * 10;
+    },
+    isOverJobSkillPoint() {
+      const isOver = this.usedJobSkillPoint > this.totalJobSkillPoint;
+      this.$store.commit("setIsOverPoint", { type: "job", bool: isOver });
+      return isOver;
+    },
+    isOverInterestSkillPoint() {
+      const isOver = this.usedInterestSkillPoint > this.totalInterestSkillPoint;
+      this.$store.commit("setIsOverPoint", { type: "interest", bool: isOver });
+      return isOver;
     },
   },
 };
@@ -69,7 +81,7 @@ div[class$="point"] {
   align-items: center;
   box-sizing: border-box;
 }
-.point {
+.point-value {
   width: 50%;
   height: 100%;
   font-weight: bold;
@@ -79,5 +91,8 @@ div[class$="point"] {
   align-items: center;
   border: solid 1px;
   box-sizing: border-box;
+}
+.over {
+  background-color: #ffb7c8;
 }
 </style>

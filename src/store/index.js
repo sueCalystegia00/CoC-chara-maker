@@ -106,6 +106,10 @@ export default new Vuex.Store({
         },
       },
     },
+    isOverPoint: {
+      job: false,
+      interest: false,
+    },
   },
   getters: {
     getStatus: (state) => (sheet) => state.statusList[sheet],
@@ -114,6 +118,9 @@ export default new Vuex.Store({
     setJobName: (state, payload) => (state.jobName = payload),
     setStatus: (state, { type, key, values }) => {
       state.statusList[type][key] = values;
+    },
+    setIsOverPoint: (state, { type, bool }) => {
+      state.isOverPoint[type] = bool;
     },
   },
   actions: {},
