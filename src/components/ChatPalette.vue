@@ -29,7 +29,10 @@ export default {
               if (!this.abilityList[categoryName][skillName].setPalette) {
                 return commands;
               }
-              commands += `CCB<=${this.abilityList[categoryName][skillName].value} ${skillName}\n`;
+              const option = this.abilityList[categoryName][skillName].option
+                ? `(${this.abilityList[categoryName][skillName].option})`
+                : "";
+              commands += `CCB<=${this.abilityList[categoryName][skillName].value} ${skillName}${option}\n`;
               return commands;
             },
             ""
