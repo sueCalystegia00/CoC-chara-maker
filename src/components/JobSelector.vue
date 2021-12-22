@@ -17,7 +17,7 @@
 import vSelect from "vue-select";
 import "vue-select/dist/vue-select.css";
 import { mapState } from "vuex";
-import jobsListData from "@/assets/jobsList.json";
+import jobsListData from "@/assets/json/jobsList.json";
 export default {
   name: "JobSelector",
   components: {
