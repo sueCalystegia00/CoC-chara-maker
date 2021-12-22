@@ -35,9 +35,15 @@
               />
             </th>
             <td class="default unedit">{{ skill.default }}</td>
-            <td class="job-point"></td>
-            <td class="int-point"></td>
-            <td class="revised"></td>
+            <td class="job-point">
+              <input type="number" v-model="skill.jobPoint" />
+            </td>
+            <td class="int-point">
+              <input type="number" v-model="skill.intPoint" />
+            </td>
+            <td class="adjust">
+              <input type="number" v-model="skill.adjustPoint" />
+            </td>
             <td class="value unedit"></td>
           </tr>
         </tbody>
@@ -48,16 +54,11 @@
 
 <script>
 import { mapState } from "vuex";
-import abilityListData from "@/assets/ abilityList.json";
+
 export default {
   name: "SkillSetter",
-  data() {
-    return {
-      abilityList: abilityListData,
-    };
-  },
   computed: {
-    ...mapState(["statusList"]),
+    ...mapState(["statusList", "abilityList"]),
   },
   watch: {
     "statusList.commonStatusSheet.dexterity.value": function (value) {
@@ -118,6 +119,17 @@ tbody td {
   width: 14%;
   height: 100%;
   border: 1px solid #cdcdcd;
+}
+td input[type="number"] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  border: none;
+  padding: 0;
+  box-sizing: border-box;
 }
 .unedit {
   background-color: #c4c4c4;

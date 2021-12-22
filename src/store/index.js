@@ -1,6 +1,8 @@
 import Vue from "vue";
 import Vuex from "vuex";
 
+import abilityListData from "@/assets/ abilityList.json";
+
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -106,6 +108,7 @@ export default new Vuex.Store({
         },
       },
     },
+    abilityList: abilityListData,
     isOverPoint: {
       job: false,
       interest: false,
