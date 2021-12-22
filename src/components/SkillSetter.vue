@@ -25,7 +25,15 @@
             :key="skillName"
             class="skill-row"
           >
-            <th class="displayname">{{ skillName }}</th>
+            <th class="displayname">
+              {{ skillName }}
+              <input
+                type="text"
+                v-if="'option' in skill"
+                class="skill-option-name"
+                v-model="skill.option"
+              />
+            </th>
             <td class="default unedit">{{ skill.default }}</td>
             <td class="job-point"></td>
             <td class="int-point"></td>
@@ -113,5 +121,9 @@ tbody td {
 }
 .unedit {
   background-color: #c4c4c4;
+}
+.skill-option-name {
+  width: 80%;
+  text-align: center;
 }
 </style>
