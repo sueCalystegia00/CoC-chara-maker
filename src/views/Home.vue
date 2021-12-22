@@ -5,8 +5,10 @@
       <p>👇</p>
     </div>
     <Status />
-    <JobSelector />
-    <SkillPointsChecker />
+    <div class="sticky">
+      <JobSelector />
+      <SkillPointsChecker />
+    </div>
     <SkillSetter />
   </div>
 </template>
@@ -49,5 +51,20 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  padding: 10px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  z-index: 999;
 }
 </style>
