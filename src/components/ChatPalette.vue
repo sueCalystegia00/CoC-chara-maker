@@ -1,7 +1,7 @@
 <template>
   <div class="chat-palette">
     <div class="title">
-      <button>チャットパレット生成</button>
+      <button @click="createChatPalette">チャットパレット生成</button>
     </div>
     <textarea v-model="chatPaletteText" />
   </div>
@@ -11,11 +11,16 @@
 import { mapState } from "vuex";
 export default {
   name: "ChatPalette",
+  data() {
+    return {
+      chatPaletteText: "",
+    };
+  },
   computed: {
     ...mapState(["statusList"]),
-    chatPaletteText() {
-      return "chatpalette";
-    },
+  },
+  methods: {
+    createChatPalette() {},
   },
 };
 </script>
