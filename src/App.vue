@@ -29,6 +29,8 @@ body,
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  -webkit-appearance: none;
+  -webkit-text-size-adjust: 100%;
   color: #2c3e50;
 }
 
