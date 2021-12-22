@@ -1,25 +1,35 @@
 <template>
-  <div class="skill-point-checker">
+  <div class="skill-points">
     <div class="job-point">
       <div class="label">職業P</div>
-      <div class="point">◯◯/◯◯</div>
+      <div class="point">◯◯/{{ totalJobSkillPoint }}</div>
     </div>
     <div class="int-point">
       <div class="label">興味P</div>
-      <div class="point">◯◯/◯◯</div>
+      <div class="point">◯◯/{{ totalInterestSkillPoint }}</div>
     </div>
   </div>
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
   name: "SkillPointChecker",
+  computed: {
+    ...mapState(["statusList"]),
+    totalJobSkillPoint() {
+      return this.statusList.commonStatusSheet.education.value * 20;
+    },
+    totalInterestSkillPoint() {
+      return this.statusList.commonStatusSheet.intelligence.value * 10;
+    },
+  },
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.skill-point-checker {
+.skill-points {
   width: 100%;
   height: 40px;
   display: flex;
