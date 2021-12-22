@@ -1,5 +1,5 @@
 <template>
-  <div class="skill-points">
+  <div class="skill-points-checker">
     <div class="job-point">
       <div class="label">職業P</div>
       <div class="point-value" :class="{ over: isOverJobSkillPoint }">
@@ -53,7 +53,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.skill-points {
+.skill-points-checker {
   width: 100%;
   height: 40px;
   display: flex;
