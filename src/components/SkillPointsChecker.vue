@@ -3,34 +3,25 @@
     <div class="job-point">
       <div class="label">職業P</div>
       <div class="point-value" :class="{ over: isOverJobSkillPoint }">
-        {{ usedJobSkillPoint }}/{{ totalJobSkillPoint }}
+        {{ getUsedPoint("jobPoint") }}/{{ totalJobSkillPoint }}
       </div>
     </div>
     <div class="int-point">
       <div class="label">興味P</div>
       <div class="point-value" :class="{ over: isOverInterestSkillPoint }">
-        {{ usedInterestSkillPoint }}/{{ totalInterestSkillPoint }}
+        {{ getUsedPoint("intPoint") }}/{{ totalInterestSkillPoint }}
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapGetters } from "vuex";
 export default {
   name: "SkillPointChecker",
-  props: {
-    usedJobSkillPoint: {
-      type: Number,
-      default: 0,
-    },
-    usedInterestSkillPoint: {
-      type: Number,
-      default: 0,
-    },
-  },
   computed: {
     ...mapState(["statusList"]),
+    ...mapGetters(["getUsedPoint"]),
     totalJobSkillPoint() {
       return this.statusList.commonStatusSheet.education.value * 20;
     },
@@ -38,12 +29,13 @@ export default {
       return this.statusList.commonStatusSheet.intelligence.value * 10;
     },
     isOverJobSkillPoint() {
-      const isOver = this.usedJobSkillPoint > this.totalJobSkillPoint;
+      const isOver = this.getUsedPoint("jobPoint") > this.totalJobSkillPoint;
       this.$store.commit("setIsOverPoint", { type: "job", bool: isOver });
       return isOver;
     },
     isOverInterestSkillPoint() {
-      const isOver = this.usedInterestSkillPoint > this.totalInterestSkillPoint;
+      const isOver =
+        this.getUsedPoint("intPoint") > this.totalInterestSkillPoint;
       this.$store.commit("setIsOverPoint", { type: "interest", bool: isOver });
       return isOver;
     },

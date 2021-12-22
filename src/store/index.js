@@ -18,6 +18,25 @@ export default new Vuex.Store({
   },
   getters: {
     getStatus: (state) => (sheet) => state.statusList[sheet],
+    getUsedPoint: (state) => (pointType) => {
+      const totalUsedPoint = Object.keys(state.abilityList).reduce(
+        (totalUsedPoint, categoryName) => {
+          let usedPoint = Object.keys(state.abilityList[categoryName]).reduce(
+            (usedPoint, skillName) => {
+              usedPoint += Number(
+                state.abilityList[categoryName][skillName][pointType]
+              );
+              return usedPoint;
+            },
+            0
+          );
+          totalUsedPoint += Number(usedPoint);
+          return totalUsedPoint;
+        },
+        0
+      );
+      return totalUsedPoint;
+    },
   },
   mutations: {
     setJobName: (state, payload) => (state.jobName = payload),
