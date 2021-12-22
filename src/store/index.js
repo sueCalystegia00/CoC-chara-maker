@@ -2,7 +2,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 
 import statusListData from "@/assets/json/statusList.json";
-import abilityListData from "@/assets/json/ abilityList.json";
+import abilityListData from "@/assets/json/abilityList.json";
 
 Vue.use(Vuex);
 
@@ -48,6 +48,10 @@ export default new Vuex.Store({
     },
     setSkill: (state, { type, key, values }) => {
       state.abilityList[type][key] = values;
+    },
+    setSkillToPalette: (state, { type, key }) => {
+      state.abilityList[type][key].setPalette =
+        !state.abilityList[type][key].setPalette;
     },
   },
   actions: {},

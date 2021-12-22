@@ -1,68 +1,75 @@
 <template>
   <div class="skill-setter">
-    <div
-      class="skill-tables"
-      v-for="(category, index) in Object.keys(abilityList)"
-      :key="index"
-    >
-      <div class="title">
-        <h2>{{ category }}</h2>
+    <p>🖍 技能名をクリックするとチャットパレットに追加されるようになります</p>
+    <div class="tables-wrapper">
+      <div
+        class="skill-tables"
+        v-for="(category, index) in Object.keys(abilityList)"
+        :key="index"
+      >
+        <div class="title">
+          <h2>{{ category }}</h2>
+        </div>
+        <table class="skill-table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>初期値</th>
+              <th>職業P</th>
+              <th>興味P</th>
+              <th>補正</th>
+              <th>能力値</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              v-for="(skill, skillName) in abilityList[category]"
+              :key="skillName"
+              class="skill-row"
+            >
+              <th
+                class="displayname"
+                :class="{ isSetPalette: skill.setPalette }"
+                @click="addPalette(category, skillName)"
+              >
+                {{ skillName }}
+                <input
+                  type="text"
+                  v-if="'option' in skill"
+                  class="skill-option-name"
+                  v-model="skill.option"
+                  @input="inputSkill(category, skillName, skill)"
+                />
+              </th>
+              <td class="default unedit">{{ skill.default }}</td>
+              <td class="job-point">
+                <input
+                  type="number"
+                  v-model="skill.jobPoint"
+                  @input="inputSkill(category, skillName, skill)"
+                />
+              </td>
+              <td class="int-point">
+                <input
+                  type="number"
+                  v-model="skill.intPoint"
+                  @input="inputSkill(category, skillName, skill)"
+                />
+              </td>
+              <td class="adjust">
+                <input
+                  type="number"
+                  v-model="skill.adjustPoint"
+                  @input="inputSkill(category, skillName, skill)"
+                />
+              </td>
+              <td class="value unedit" :class="{ over: skill.value >= 100 }">
+                {{ skill.value }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-      <table class="skill-table">
-        <thead>
-          <tr>
-            <th></th>
-            <th>初期値</th>
-            <th>職業P</th>
-            <th>興味P</th>
-            <th>補正</th>
-            <th>能力値</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr
-            v-for="(skill, skillName) in abilityList[category]"
-            :key="skillName"
-            class="skill-row"
-          >
-            <th class="displayname">
-              {{ skillName }}
-              <input
-                type="text"
-                v-if="'option' in skill"
-                class="skill-option-name"
-                v-model="skill.option"
-                @input="inputSkill(category, skillName, skill)"
-              />
-            </th>
-            <td class="default unedit">{{ skill.default }}</td>
-            <td class="job-point">
-              <input
-                type="number"
-                v-model="skill.jobPoint"
-                @input="inputSkill(category, skillName, skill)"
-              />
-            </td>
-            <td class="int-point">
-              <input
-                type="number"
-                v-model="skill.intPoint"
-                @input="inputSkill(category, skillName, skill)"
-              />
-            </td>
-            <td class="adjust">
-              <input
-                type="number"
-                v-model="skill.adjustPoint"
-                @input="inputSkill(category, skillName, skill)"
-              />
-            </td>
-            <td class="value unedit" :class="{ over: skill.value >= 100 }">
-              {{ skill.value }}
-            </td>
-          </tr>
-        </tbody>
-      </table>
     </div>
   </div>
 </template>
@@ -78,9 +85,15 @@ export default {
   watch: {
     "statusList.commonStatusSheet.dexterity.value": function (value) {
       this.abilityList["戦闘技能"]["回避"].default = value * 2;
+      this.inputSkill("戦闘技能", "回避", this.abilityList["戦闘技能"]["回避"]);
     },
     "statusList.commonStatusSheet.education.value": function (value) {
       this.abilityList["交渉技能"]["母国語"].default = value * 5;
+      this.inputSkill(
+        "交渉技能",
+        "母国語",
+        this.abilityList["交渉技能"]["母国語"]
+      );
     },
   },
   methods: {
@@ -97,6 +110,12 @@ export default {
         values: setValues,
       });
     },
+    addPalette(typeName, skillName) {
+      this.$store.commit("setSkillToPalette", {
+        type: typeName,
+        key: skillName,
+      });
+    },
   },
 };
 </script>
@@ -105,12 +124,19 @@ export default {
 <style scoped>
 .skill-setter {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+}
+.tables-wrapper {
+  width: 100%;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 10px 20px;
 }
 @media screen and (max-width: 650px) {
-  .skill-setter {
+  .tables-wrapper {
     grid-template-columns: repeat(1, 1fr);
   }
 }
@@ -143,6 +169,9 @@ tbody th {
   color: #ffffff;
   font-size: clamp(0.5rem, 1.8vw, 1rem);
   font-weight: bold;
+}
+.isSetPalette {
+  background-color: #7700ff;
 }
 tbody td {
   position: relative;
