@@ -7,6 +7,7 @@
     <Status />
     <JobSelector />
     <SkillPointsChecker />
+    <SkillSetter />
   </div>
 </template>
 
@@ -15,6 +16,7 @@
 import Status from "@/components/Status.vue";
 import JobSelector from "@/components/JobSelector.vue";
 import SkillPointsChecker from "@/components/SkillPointsChecker.vue";
+import SkillSetter from "@/components/SkillSetter.vue";
 
 export default {
   name: "Home",
@@ -22,6 +24,7 @@ export default {
     Status,
     JobSelector,
     SkillPointsChecker,
+    SkillSetter,
   },
   data() {
     return {};
