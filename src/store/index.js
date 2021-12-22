@@ -1,104 +1,53 @@
 import Vue from "vue";
 import Vuex from "vuex";
 
+import statusListData from "@/assets/json/statusList.json";
+import abilityListData from "@/assets/json/ abilityList.json";
+
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
     jobName: "",
-    statusList: {
-      commonStatusSheet: [
-        {
-          displayName: "STR",
-          default: null,
-          revised: null,
+    statusList: statusListData,
+    abilityList: abilityListData,
+    isOverPoint: {
+      job: false,
+      interest: false,
+    },
+  },
+  getters: {
+    getStatus: (state) => (sheet) => state.statusList[sheet],
+    getUsedPoint: (state) => (pointType) => {
+      const totalUsedPoint = Object.keys(state.abilityList).reduce(
+        (totalUsedPoint, categoryName) => {
+          let usedPoint = Object.keys(state.abilityList[categoryName]).reduce(
+            (usedPoint, skillName) => {
+              usedPoint += Number(
+                state.abilityList[categoryName][skillName][pointType]
+              );
+              return usedPoint;
+            },
+            0
+          );
+          totalUsedPoint += Number(usedPoint);
+          return totalUsedPoint;
         },
-        {
-          displayName: "CON",
-          default: null,
-          revised: null,
-        },
-        {
-          displayName: "POW",
-          default: null,
-          revised: null,
-        },
-        {
-          displayName: "DEX",
-          default: null,
-          revised: null,
-        },
-        {
-          displayName: "APP",
-          default: null,
-          revised: null,
-        },
-        {
-          displayName: "SIZ",
-          default: null,
-          revised: null,
-        },
-        {
-          displayName: "INT",
-          default: null,
-          revised: null,
-        },
-        {
-          displayName: "EDU",
-          default: null,
-          revised: null,
-        },
-      ],
-      calclatedStatusSheet: [
-        {
-          displayName: "HP",
-          revised: null,
-        },
-        {
-          displayName: "MP",
-          revised: null,
-        },
-        {
-          displayName: "SAN",
-          revised: null,
-        },
-        {
-          displayName: "アイデア",
-          revised: null,
-        },
-        {
-          displayName: "幸運",
-          revised: null,
-        },
-        {
-          displayName: "知識",
-          revised: null,
-        },
-      ],
-      specStatusSheet: [
-        {
-          displayName: "DB",
-          define: null,
-        },
-        {
-          displayName: "SAN値上限",
-          define: null,
-        },
-      ],
+        0
+      );
+      return totalUsedPoint;
     },
   },
   mutations: {
-    setJobName(state, payload) {
-      state.jobName = payload;
+    setJobName: (state, payload) => (state.jobName = payload),
+    setStatus: (state, { type, key, values }) => {
+      state.statusList[type][key] = values;
     },
-    setCommonStatusSheet(state, data) {
-      state.commonStatusSheet = data;
+    setIsOverPoint: (state, { type, bool }) => {
+      state.isOverPoint[type] = bool;
     },
-    setCalclatedStatusSheet(state, data) {
-      state.calclatedStatusSheet = data;
-    },
-    setSpecStatusSheet(state, data) {
-      state.specStatusSheet = data;
+    setSkill: (state, { type, key, values }) => {
+      state.abilityList[type][key] = values;
     },
   },
   actions: {},

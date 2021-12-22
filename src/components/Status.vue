@@ -19,19 +19,27 @@
         </thead>
         <tbody>
           <tr
-            v-for="commonStatus in commonStatusSheet"
-            :key="commonStatus.displayName"
+            v-for="(commonStatus, key) in getStatus('commonStatusSheet')"
+            :key="key"
             class="common-status status-row"
           >
             <th class="displayname">{{ commonStatus.displayName }}</th>
             <td class="default">
-              <input type="number" v-model="commonStatus.default" />
+              <input
+                type="number"
+                v-model="commonStatus.default"
+                @input="inputStatus('commonStatusSheet', key, commonStatus)"
+              />
             </td>
             <td class="revised">
-              <input type="number" v-model="commonStatus.revised" />
+              <input
+                type="number"
+                v-model="commonStatus.revised"
+                @input="inputStatus('commonStatusSheet', key, commonStatus)"
+              />
             </td>
             <td class="value unedit">
-              {{ definedCommonStatusSheet[commonStatus.displayName].value }}
+              {{ commonStatus.value }}
             </td>
           </tr>
         </tbody>
@@ -47,28 +55,30 @@
         </thead>
         <tbody>
           <tr
-            v-for="calclatedStatus in calclatedStatusSheet"
-            :key="calclatedStatus.displayName"
+            v-for="(calclatedStatus, key) in getStatus('calclatedStatusSheet')"
+            :key="key"
             class="calc-status status-row"
           >
             <th class="displayname">{{ calclatedStatus.displayName }}</th>
             <td class="default unedit">
-              {{
-                definedCalclatedStatusSheet[calclatedStatus.displayName].default
-              }}
+              {{ calclatedStatus.default }}
             </td>
             <td class="revised">
-              <input type="number" v-model="calclatedStatus.revised" />
+              <input
+                type="number"
+                v-model="calclatedStatus.revised"
+                @input="
+                  inputStatus('calclatedStatusSheet', key, calclatedStatus)
+                "
+              />
             </td>
             <td class="value unedit">
-              {{
-                definedCalclatedStatusSheet[calclatedStatus.displayName].value
-              }}
+              {{ calclatedStatus.value }}
             </td>
           </tr>
           <tr
-            v-for="specStatus in definedSpecStatusSheet"
-            :key="specStatus.displayName"
+            v-for="(specStatus, key) in getStatus('specStatusSheet')"
+            :key="key"
             class="spec-status status-row"
           >
             <th class="displayname">{{ specStatus.displayName }}</th>
@@ -85,124 +95,167 @@
 </template>
 
 <script>
+import { mapState, mapGetters } from "vuex";
 export default {
   name: "Status",
   data() {
-    return {
-      commonStatusSheet: [
-        {
-          displayName: "STR",
-          default: null,
-          revised: null,
-        },
-        {
-          displayName: "CON",
-          default: null,
-          revised: null,
-        },
-        {
-          displayName: "POW",
-          default: null,
-          revised: null,
-        },
-        {
-          displayName: "DEX",
-          default: null,
-          revised: null,
-        },
-        {
-          displayName: "APP",
-          default: null,
-          revised: null,
-        },
-        {
-          displayName: "SIZ",
-          default: null,
-          revised: null,
-        },
-        {
-          displayName: "INT",
-          default: null,
-          revised: null,
-        },
-        {
-          displayName: "EDU",
-          default: null,
-          revised: null,
-        },
-      ],
-      calclatedStatusSheet: [
-        {
-          displayName: "HP",
-          revised: null,
-        },
-        {
-          displayName: "MP",
-          revised: null,
-        },
-        {
-          displayName: "SAN",
-          revised: null,
-        },
-        {
-          displayName: "アイデア",
-          revised: null,
-        },
-        {
-          displayName: "幸運",
-          revised: null,
-        },
-        {
-          displayName: "知識",
-          revised: null,
-        },
-      ],
-    };
+    return {};
   },
   computed: {
-    definedCommonStatusSheet() {
-      return this.commonStatusSheet.reduce((acc, status) => {
-        acc[status.displayName] = {
-          ...status,
-          value: Number(status.default) + Number(status.revised),
-        };
-        return acc;
-      }, {});
+    ...mapState(["statusList"]),
+    ...mapGetters(["getStatus"]),
+    HPobject() {
+      return [
+        this.statusList.commonStatusSheet.constitution.value,
+        this.statusList.commonStatusSheet.size.value,
+      ];
     },
-    definedCalclatedStatusSheet() {
-      return this.calclatedStatusSheet.reduce((acc, status) => {
-        acc[status.displayName] = { ...status };
-        if (status.displayName == "HP") {
-          acc[status.displayName].default = Math.ceil(
-            (this.definedCommonStatusSheet.CON.value +
-              this.definedCommonStatusSheet.SIZ.value) /
-              2
-          );
-        } else if (status.displayName == "MP") {
-          acc[status.displayName].default =
-            this.definedCommonStatusSheet.POW.value * 1;
-        } else if (status.displayName == "SAN") {
-          acc[status.displayName].default =
-            this.definedCommonStatusSheet.POW.value * 5;
-        } else if (status.displayName == "アイデア") {
-          acc[status.displayName].default =
-            this.definedCommonStatusSheet.INT.value * 5;
-        } else if (status.displayName == "幸運") {
-          acc[status.displayName].default =
-            this.definedCommonStatusSheet.POW.value * 5;
-        } else if (status.displayName == "知識") {
-          acc[status.displayName].default =
-            this.definedCommonStatusSheet.EDU.value * 5;
-        }
-        acc[status.displayName].value =
-          acc[status.displayName].default + Number(status.revised);
-        return acc;
-      }, {});
+    MPandSANandLUCKobject() {
+      return [this.statusList.commonStatusSheet.power.value];
     },
-    definedSpecStatusSheet() {
-      let damageBonusValue =
-        this.definedCommonStatusSheet.STR.value +
-        this.definedCommonStatusSheet.SIZ.value;
+    IDEAobject() {
+      return [this.statusList.commonStatusSheet.intelligence.value];
+    },
+    KNOWLEDGEobject() {
+      return [this.statusList.commonStatusSheet.education.value];
+    },
+    DBobject() {
+      return [
+        this.statusList.commonStatusSheet.strength.value,
+        this.statusList.commonStatusSheet.size.value,
+      ];
+    },
+  },
+  watch: {
+    HPobject() {
+      this.setDefaultHitPoint();
+    },
+    MPandSANandLUCKobject() {
+      this.setDefaultMagicPoint();
+      this.setDefaultSanity();
+      this.setDefaultLuck();
+    },
+    IDEAobject() {
+      this.setDefaultIdea();
+    },
+    KNOWLEDGEobject() {
+      this.setDefaultKnowledge();
+    },
+    DBobject() {
+      this.setDamageBonus();
+    },
+  },
+  methods: {
+    inputStatus(typeName, keyName, statusValues) {
+      let setValues = { ...statusValues };
+      setValues.value =
+        Number(statusValues.default) + Number(statusValues.revised);
+      this.$store.commit("setStatus", {
+        type: typeName,
+        key: keyName,
+        values: setValues,
+      });
+    },
+    setDefaultHitPoint() {
+      const defaultHP = Math.ceil(
+        (this.statusList.commonStatusSheet.constitution.value +
+          this.statusList.commonStatusSheet.size.value) /
+          2
+      );
+      this.$store.commit("setStatus", {
+        type: "calclatedStatusSheet",
+        key: "hitPoint",
+        values: {
+          displayName: "HP",
+          default: defaultHP,
+          revised: this.statusList.calclatedStatusSheet.hitPoint.revised,
+          value:
+            Number(defaultHP) +
+            Number(this.statusList.calclatedStatusSheet.hitPoint.revised),
+        },
+      });
+    },
+    setDefaultMagicPoint() {
+      const defaultMP = this.statusList.commonStatusSheet.power.value * 1;
+      this.$store.commit("setStatus", {
+        type: "calclatedStatusSheet",
+        key: "magicPoint",
+        values: {
+          displayName: "MP",
+          default: defaultMP,
+          revised: this.statusList.calclatedStatusSheet.magicPoint.revised,
+          value:
+            Number(defaultMP) +
+            Number(this.statusList.calclatedStatusSheet.magicPoint.revised),
+        },
+      });
+    },
+    setDefaultSanity() {
+      const defaultSAN = this.statusList.commonStatusSheet.power.value * 5;
+      this.$store.commit("setStatus", {
+        type: "calclatedStatusSheet",
+        key: "sanity",
+        values: {
+          displayName: "SAN",
+          default: defaultSAN,
+          revised: this.statusList.calclatedStatusSheet.sanity.revised,
+          value:
+            Number(defaultSAN) +
+            Number(this.statusList.calclatedStatusSheet.sanity.revised),
+        },
+      });
+    },
+    setDefaultIdea() {
+      const defaultIdea =
+        this.statusList.commonStatusSheet.intelligence.value * 5;
+      this.$store.commit("setStatus", {
+        type: "calclatedStatusSheet",
+        key: "idea",
+        values: {
+          displayName: "アイデア",
+          default: defaultIdea,
+          revised: this.statusList.calclatedStatusSheet.idea.revised,
+          value:
+            Number(defaultIdea) +
+            Number(this.statusList.calclatedStatusSheet.idea.revised),
+        },
+      });
+    },
+    setDefaultLuck() {
+      const defaultLuck = this.statusList.commonStatusSheet.power.value * 5;
+      this.$store.commit("setStatus", {
+        type: "calclatedStatusSheet",
+        key: "luck",
+        values: {
+          displayName: "幸運",
+          default: defaultLuck,
+          revised: this.statusList.calclatedStatusSheet.luck.revised,
+          value:
+            Number(defaultLuck) +
+            Number(this.statusList.calclatedStatusSheet.luck.revised),
+        },
+      });
+    },
+    setDefaultKnowledge() {
+      const defaultKnowledge =
+        this.statusList.commonStatusSheet.education.value * 5;
+      this.$store.commit("setStatus", {
+        type: "calclatedStatusSheet",
+        key: "knowledge",
+        values: {
+          displayName: "知識",
+          default: defaultKnowledge,
+          revised: this.statusList.calclatedStatusSheet.knowledge.revised,
+          value:
+            Number(defaultKnowledge) +
+            Number(this.statusList.calclatedStatusSheet.knowledge.revised),
+        },
+      });
+    },
+    setDamageBonus() {
+      const damageBonusValue =
+        this.statusList.commonStatusSheet.strength.value +
+        this.statusList.commonStatusSheet.size.value;
       let displayDB = "";
       if (damageBonusValue <= 12) displayDB = "-1D6";
       else if (damageBonusValue >= 13 && damageBonusValue <= 16)
@@ -216,57 +269,59 @@ export default {
       else if (damageBonusValue >= 41 && damageBonusValue <= 56)
         displayDB = "+2D6";
       else if (damageBonusValue >= 57) displayDB = "+3D6";
-
-      return {
-        DB: {
+      this.$store.commit("setStatus", {
+        type: "specStatusSheet",
+        key: "damageBonus",
+        values: {
           displayName: "DB",
           value: displayDB,
         },
-        SAN値上限: {
-          displayName: "SAN値上限",
-          value: 99,
-        },
-      };
-    },
-  },
-  watch: {
-    definedCommonStatusSheet: function (data) {
-      this.$store.commit("setCommonStatusSheet", data);
-    },
-    definedCalclatedStatusSheet: function (data) {
-      this.$store.commit("setCalclatedStatusSheet", data);
-    },
-    definedSpecStatusSheet: function (data) {
-      this.$store.commit("setSpecStatusSheet", data);
-    },
-  },
-  methods: {
-    diceroll() {
-      this.commonStatusSheet.forEach((status) => {
-        if (
-          status.displayName == "STR" ||
-          status.displayName == "CON" ||
-          status.displayName == "POW" ||
-          status.displayName == "DEX" ||
-          status.displayName == "APP"
-        ) {
-          status.default =
-            Math.floor(Math.random() * 6 + 1) +
-            Math.floor(Math.random() * 6 + 1) +
-            Math.floor(Math.random() * 6 + 1);
-        } else if (status.displayName == "SIZ" || status.displayName == "INT") {
-          status.default =
-            Math.floor(Math.random() * 6 + 1) +
-            Math.floor(Math.random() * 6 + 1) +
-            6;
-        } else if (status.displayName == "EDU") {
-          status.default =
-            Math.floor(Math.random() * 6 + 1) +
-            Math.floor(Math.random() * 6 + 1) +
-            Math.floor(Math.random() * 6 + 1) +
-            3;
-        }
       });
+    },
+    diceroll() {
+      Object.keys(this.$store.state.statusList.commonStatusSheet).forEach(
+        (keyName) => {
+          let element = this.$store.state.statusList.commonStatusSheet[keyName];
+          let defaultValue = 0;
+          if (
+            element.displayName == "STR" ||
+            element.displayName == "CON" ||
+            element.displayName == "POW" ||
+            element.displayName == "DEX" ||
+            element.displayName == "APP"
+          ) {
+            defaultValue =
+              Math.floor(Math.random() * 6 + 1) +
+              Math.floor(Math.random() * 6 + 1) +
+              Math.floor(Math.random() * 6 + 1);
+          } else if (
+            element.displayName == "SIZ" ||
+            element.displayName == "INT"
+          ) {
+            defaultValue =
+              Math.floor(Math.random() * 6 + 1) +
+              Math.floor(Math.random() * 6 + 1) +
+              6;
+          } else if (element.displayName == "EDU") {
+            defaultValue =
+              Math.floor(Math.random() * 6 + 1) +
+              Math.floor(Math.random() * 6 + 1) +
+              Math.floor(Math.random() * 6 + 1) +
+              3;
+          }
+          let setValues = {
+            displayName: element.displayName,
+            default: defaultValue,
+            revised: element.revised,
+            value: Number(defaultValue) + Number(element.revised),
+          };
+          this.$store.commit("setStatus", {
+            type: "commonStatusSheet",
+            key: keyName,
+            values: setValues,
+          });
+        }
+      );
     },
   },
 };
@@ -276,7 +331,6 @@ export default {
 <style scoped>
 .status {
   width: 100%;
-  max-width: 800px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -309,7 +363,7 @@ export default {
   grid-template-columns: repeat(2, 1fr);
   gap: 10px 20px;
 }
-/* over iPhone12/13 Pro */
+/* スマホ */
 @media screen and (max-width: 428px) {
   .option-header {
     display: none;
@@ -327,7 +381,7 @@ tbody {
   text-align: center;
 }
 thead th {
-  font-size: 0.8rem;
+  font-size: 0.5rem;
   color: #373737;
 }
 tbody tr {
@@ -335,17 +389,25 @@ tbody tr {
 }
 tbody th {
   width: 30%;
+  height: 100%;
   background-color: #000000;
   color: #ffffff;
 }
 tbody td {
+  position: relative;
   width: 22%;
+  height: 100%;
   border: 1px solid #cdcdcd;
 }
 td input {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
+  height: 100%;
   text-align: center;
   border: none;
+  padding: 0;
   box-sizing: border-box;
 }
 .unedit {
