@@ -57,7 +57,9 @@
                 @input="inputSkill(category, skillName, skill)"
               />
             </td>
-            <td class="value unedit">{{ skill.value }}</td>
+            <td class="value unedit" :class="{ over: skill.value >= 100 }">
+              {{ skill.value }}
+            </td>
           </tr>
         </tbody>
       </table>
@@ -161,6 +163,9 @@ td input[type="number"] {
 }
 .unedit {
   background-color: #c4c4c4;
+}
+.over {
+  background-color: #ffb7c8;
 }
 .skill-option-name {
   width: 80%;
