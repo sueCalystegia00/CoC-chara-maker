@@ -1,16 +1,18 @@
 <template>
   <div class="chat-palette">
     <div class="title">
-      <h2>チャットパレット</h2>
+      <button>チャットパレット生成</button>
     </div>
     <textarea v-model="chatPaletteText" />
   </div>
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
   name: "ChatPalette",
   computed: {
+    ...mapState(["statusList"]),
     chatPaletteText() {
       return "chatpalette";
     },
@@ -25,12 +27,31 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+  row-gap: 5px;
 }
 .title {
   width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
+  column-gap: 10px;
+}
+button {
+  color: #000000;
+  background-color: #d8d8d8;
+  border: 1.5px solid #000000;
+  border-radius: 4px;
+  padding: 0 15px;
+  cursor: pointer;
+  height: 40px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 1px 1px #a4a4a4, 2px 2px #a4a4a4, 3px 3px #a4a4a4;
+}
+button:active {
+  box-shadow: none;
+  transition: all 0.2s ease-in-out;
 }
 textarea {
   width: 100%;
