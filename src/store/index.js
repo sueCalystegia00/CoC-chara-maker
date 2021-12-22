@@ -49,6 +49,10 @@ export default new Vuex.Store({
     setSkill: (state, { type, key, values }) => {
       state.abilityList[type][key] = values;
     },
+    setSkillToPalette: (state, { type, key }) => {
+      state.abilityList[type][key].setPalette =
+        !state.abilityList[type][key].setPalette;
+    },
   },
   actions: {},
   modules: {},
