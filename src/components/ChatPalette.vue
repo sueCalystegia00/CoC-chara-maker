@@ -13,14 +13,34 @@ export default {
   name: "ChatPalette",
   data() {
     return {
-      chatPaletteText: "",
+      chatPaletteText: "CCB<=\nCCB<={SAN} SANチェック",
     };
   },
   computed: {
-    ...mapState(["statusList"]),
+    ...mapState(["abilityList"]),
   },
   methods: {
-    createChatPalette() {},
+    createChatPalette() {
+      const initText = "CCB<=\nCCB<={SAN} SANチェック\n";
+      const palette = Object.keys(this.abilityList).reduce(
+        (palette, categoryName) => {
+          let commands = Object.keys(this.abilityList[categoryName]).reduce(
+            (commands, skillName) => {
+              if (!this.abilityList[categoryName][skillName].setPalette) {
+                return commands;
+              }
+              commands += `CCB<=${this.abilityList[categoryName][skillName].value} ${skillName}\n`;
+              return commands;
+            },
+            ""
+          );
+          palette += `${commands}`;
+          return palette;
+        },
+        ""
+      );
+      this.chatPaletteText = initText + palette;
+    },
   },
 };
 </script>
