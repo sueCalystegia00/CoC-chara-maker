@@ -42,6 +42,7 @@ export default {
   width: 100%;
   max-width: 1000px;
   display: flex;
+  flex: 1;
   flex-direction: column;
   align-items: center;
   padding: 10px;
