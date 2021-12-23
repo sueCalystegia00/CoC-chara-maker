@@ -23,6 +23,7 @@ body,
   width: 100%;
   min-width: 270px;
   height: 100%;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -32,6 +33,7 @@ body,
   -webkit-appearance: none;
   -webkit-text-size-adjust: 100%;
   color: #2c3e50;
+  font-size: 16px;
 }
 
 h1,

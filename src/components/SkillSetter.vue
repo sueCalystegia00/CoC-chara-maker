@@ -167,7 +167,7 @@ tbody th {
   height: 100%;
   background-color: #000000;
   color: #ffffff;
-  font-size: clamp(0.5rem, 1.8vw, 1rem);
+  font-size: clamp(16px, 1.8vw, 1rem);
   font-weight: bold;
 }
 .isSetPalette {
