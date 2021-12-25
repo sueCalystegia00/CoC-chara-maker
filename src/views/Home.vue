@@ -10,6 +10,7 @@
       <SkillPointsChecker />
     </div>
     <SkillSetter />
+    <Profile />
     <ChatPalette />
   </div>
 </template>
@@ -20,6 +21,7 @@ import Status from "@/components/Status.vue";
 import JobSelector from "@/components/JobSelector.vue";
 import SkillPointsChecker from "@/components/SkillPointsChecker.vue";
 import SkillSetter from "@/components/SkillSetter.vue";
+import Profile from "@/components/Profile.vue";
 import ChatPalette from "@/components/ChatPalette.vue";
 
 export default {
@@ -29,6 +31,7 @@ export default {
     JobSelector,
     SkillPointsChecker,
     SkillSetter,
+    Profile,
     ChatPalette,
   },
   data() {
