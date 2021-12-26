@@ -1,8 +1,16 @@
 <template>
   <div class="chat-palette">
     <div class="title">
-      <button @click="createChatPalette">チャットパレット生成</button>
+      <button
+        @click="
+          createCharacterProfile();
+          createChatPalette();
+        "
+      >
+        チャットパレット生成
+      </button>
     </div>
+    <textarea v-model="characterProfileText" />
     <textarea v-model="chatPaletteText" />
   </div>
 </template>
@@ -13,13 +21,65 @@ export default {
   name: "ChatPalette",
   data() {
     return {
+      characterProfileText: "",
       chatPaletteText: "CCB<=\nCCB<={SAN} SANチェック",
     };
   },
   computed: {
-    ...mapState(["abilityList"]),
+    ...mapState(["profile", "jobName", "statusList", "abilityList"]),
   },
   methods: {
+    createCharacterProfile() {
+      const personalityText = `${this.profile.name}(${this.profile.age}) ${this.jobName} ${this.profile.gender} \n`;
+      const commonStatusText =
+        Object.keys(this.statusList.commonStatusSheet).reduce(
+          (commonStatusText, statusKey) => {
+            commonStatusText += `${this.statusList.commonStatusSheet[statusKey].displayName}: ${this.statusList.commonStatusSheet[statusKey].value}  `;
+            return commonStatusText;
+          },
+          ""
+        ) + "\n";
+      const additionalStatusText =
+        Object.keys(this.statusList.calclatedStatusSheet).reduce(
+          (calclatedStatusText, statusKey) => {
+            calclatedStatusText += `${this.statusList.calclatedStatusSheet[statusKey].displayName}: ${this.statusList.calclatedStatusSheet[statusKey].value}  `;
+            return calclatedStatusText;
+          },
+          ""
+        ) +
+        `${this.statusList.specStatusSheet.damageBonus.displayName}: ${this.statusList.specStatusSheet.damageBonus.value}  \n`;
+      const divider = "-------------------------------------\n";
+      const skillset = Object.keys(this.abilityList).reduce(
+        (skillTexts, categoryKey) => {
+          let skillText = Object.keys(this.abilityList[categoryKey]).reduce(
+            (skillText, skillKey) => {
+              if (!this.abilityList[categoryKey][skillKey].setPalette) {
+                return skillText;
+              }
+              const option = this.abilityList[categoryKey][skillKey].option
+                ? `(${this.abilityList[categoryKey][skillKey].option})`
+                : "";
+              skillText += `${skillKey}${option}(${this.abilityList[categoryKey][skillKey].value})`;
+              return `${skillText}  `;
+            },
+            ""
+          );
+          skillTexts += `${skillText} \n`;
+          return skillTexts;
+        },
+        ""
+      );
+      this.characterProfileText =
+        personalityText +
+        commonStatusText +
+        additionalStatusText +
+        divider +
+        "【技能】\n" +
+        skillset +
+        divider +
+        "【持ち物】\n" +
+        this.profile.belongings;
+    },
     createChatPalette() {
       const initText = "CCB<=\nCCB<={SAN} SANチェック\n";
       const palette = Object.keys(this.abilityList).reduce(
