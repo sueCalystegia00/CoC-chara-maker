@@ -12,7 +12,7 @@
         </div>
         <table class="skill-table">
           <thead>
-            <tr>
+            <tr class="sm-row">
               <th></th>
               <th>初期値</th>
               <th>職業P</th>
@@ -25,7 +25,7 @@
             <tr
               v-for="(skill, skillName) in abilityList[category]"
               :key="skillName"
-              class="skill-row"
+              class="md-row"
             >
               <th
                 class="displayname"
@@ -164,7 +164,7 @@ tbody tr {
 }
 tbody th {
   width: 30%;
-  height: 100%;
+  height: 40px;
   background-color: #000000;
   color: #ffffff;
   font-size: clamp(16px, 1.8vw, 1rem);
@@ -176,7 +176,7 @@ tbody th {
 tbody td {
   position: relative;
   width: 14%;
-  height: 100%;
+  height: 40px;
   border: 1px solid #cdcdcd;
 }
 td input[type="number"] {

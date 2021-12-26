@@ -3,7 +3,7 @@
     <h2>プロフィール</h2>
     <table>
       <tbody>
-        <tr>
+        <tr class="md-row">
           <th class="label-name">名前</th>
           <td colspan="3">
             <input
@@ -14,7 +14,7 @@
             />
           </td>
         </tr>
-        <tr>
+        <tr class="md-row">
           <th class="label-gender">性別</th>
           <td>
             <v-select
@@ -34,7 +34,7 @@
             />
           </td>
         </tr>
-        <tr class="large">
+        <tr class="lg-row">
           <th class="label-belongings">所持品</th>
           <td colspan="3">
             <textarea
@@ -45,7 +45,7 @@
             ></textarea>
           </td>
         </tr>
-        <tr class="large">
+        <tr class="lg-row">
           <th class="label-note">メモ</th>
           <td colspan="3">
             <textarea
@@ -94,16 +94,18 @@ tbody {
   width: 100%;
   text-align: center;
 }
-thead th {
-  font-size: 0.5rem;
-  color: #373737;
-}
-tbody tr {
+.md-row,
+.md-row th,
+.md-row td {
   height: 40px;
+}
+.lg-row,
+.lg-row th,
+.lg-row td {
+  height: 80px;
 }
 tbody th {
   width: 20%;
-  height: 100%;
   background-color: #000000;
   color: #ffffff;
   font-size: clamp(16px, 1.8vw, 1rem);
@@ -112,7 +114,6 @@ tbody th {
 tbody td {
   position: relative;
   width: 30%;
-  height: 100%;
   border: 1px solid #cdcdcd;
 }
 .input-gender >>> .vs__dropdown-toggle {
@@ -123,9 +124,6 @@ tbody td {
 .input-gender >>> .vs__clear {
   display: none;
 }
-.large {
-  height: 80px;
-}
 input[type="text"],
 input[type="number"],
 textarea {
@@ -135,7 +133,7 @@ textarea {
   width: 100%;
   height: 100%;
   border: none;
-  padding: 10px;
+  padding: 0 10px;
   box-sizing: border-box;
 }
 input[type="text"],
@@ -146,6 +144,7 @@ input[type="number"] {
   text-align: center;
 }
 textarea {
+  padding: 10px;
   overflow-y: scroll;
   resize: none;
 }

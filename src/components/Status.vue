@@ -389,14 +389,14 @@ tbody tr {
 }
 tbody th {
   width: 30%;
-  height: 100%;
+  height: 40px;
   background-color: #000000;
   color: #ffffff;
 }
 tbody td {
   position: relative;
   width: 22%;
-  height: 100%;
+  height: 40px;
   border: 1px solid #cdcdcd;
 }
 td input {
