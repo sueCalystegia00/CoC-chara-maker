@@ -94,10 +94,6 @@ tbody {
   width: 100%;
   text-align: center;
 }
-thead th {
-  font-size: 0.5rem;
-  color: #373737;
-}
 tbody tr {
   height: 40px;
 }
@@ -135,7 +131,7 @@ textarea {
   width: 100%;
   height: 100%;
   border: none;
-  padding: 10px;
+  padding: 0 10px;
   box-sizing: border-box;
 }
 input[type="text"],
@@ -146,6 +142,7 @@ input[type="number"] {
   text-align: center;
 }
 textarea {
+  padding: 10px;
   overflow-y: scroll;
   resize: none;
 }
