@@ -9,11 +9,11 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     profile: {
-      name: "name",
-      gender: "男性",
-      age: 24,
-      belongings: "色々",
-      personalNote: "ぼっち",
+      name: "",
+      gender: "",
+      age: null,
+      belongings: "",
+      personalNote: "",
     },
     jobName: "",
     statusList: statusListData,
