@@ -1,5 +1,5 @@
 # CoC キャラクター メーカー
-公開URL: https://coc-charactor-maker.web.app/
+公開URL: https://coc-character-maker.web.app/
 ![スクリーンショット 2021-12-25 23 01 16](https://user-images.githubusercontent.com/52482280/147386588-b6078d2e-bacf-4a93-8fb2-2beaf001b3bc.png)
 
 友人からクトゥルフTRPGのキャラクター作成が煩雑だという訴えを受けて，  
