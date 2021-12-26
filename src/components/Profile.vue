@@ -5,7 +5,14 @@
       <tbody>
         <tr>
           <th class="label-name">名前</th>
-          <td colspan="3"><input type="text" class="input-name" /></td>
+          <td colspan="3">
+            <input
+              type="text"
+              class="input-name"
+              v-model="profile.name"
+              @input="setProfileData('name', profile.name)"
+            />
+          </td>
         </tr>
         <tr>
           <th class="label-gender">性別</th>
@@ -13,21 +20,40 @@
             <v-select
               class="input-gender"
               :options="['男性', '女性', '不詳']"
+              v-model="profile.gender"
+              @input="setProfileData('gender', profile.gender)"
             ></v-select>
           </td>
           <th class="label-age">年齢</th>
-          <td><input type="number" class="input-gender" /></td>
+          <td>
+            <input
+              type="number"
+              class="input-gender"
+              v-model="profile.age"
+              @input="setProfileData('age', profile.age)"
+            />
+          </td>
         </tr>
         <tr class="large">
           <th class="label-belongings">所持品</th>
           <td colspan="3">
-            <textarea type="text" class="input-belongings"></textarea>
+            <textarea
+              type="text"
+              class="input-belongings"
+              v-model="profile.belongings"
+              @input="setProfileData('belongings', profile.belongings)"
+            ></textarea>
           </td>
         </tr>
         <tr class="large">
           <th class="label-note">メモ</th>
           <td colspan="3">
-            <textarea type="text" class="input-note"></textarea>
+            <textarea
+              type="text"
+              class="input-note"
+              v-model="profile.personalNote"
+              @input="setProfileData('personalNote', profile.personalNote)"
+            ></textarea>
           </td>
         </tr>
       </tbody>
@@ -36,11 +62,20 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 import vSelect from "vue-select";
 export default {
   name: "Profile",
   components: {
     vSelect,
+  },
+  computed: {
+    ...mapState(["profile"]),
+  },
+  methods: {
+    setProfileData(key, value) {
+      this.$store.commit("setProfile", { key: key, value: value });
+    },
   },
 };
 </script>

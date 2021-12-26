@@ -9,11 +9,11 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     profile: {
-      name: "",
-      gender: "",
-      age: null,
-      belongings: "",
-      personalNote: "",
+      name: "name",
+      gender: "男性",
+      age: 24,
+      belongings: "色々",
+      personalNote: "ぼっち",
     },
     jobName: "",
     statusList: statusListData,
@@ -46,7 +46,7 @@ export default new Vuex.Store({
     },
   },
   mutations: {
-    setProfile: (state, payload) => (state.profile = payload),
+    setProfile: (state, { key, value }) => (state.profile[key] = value),
     setJobName: (state, payload) => (state.jobName = payload),
     setStatus: (state, { type, key, values }) => {
       state.statusList[type][key] = values;
