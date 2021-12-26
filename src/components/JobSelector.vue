@@ -46,6 +46,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .jobselector {
+  position: relative;
   width: 100%;
   display: flex;
   flex-direction: column;
