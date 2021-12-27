@@ -29,6 +29,7 @@
                 type="number"
                 v-model="commonStatus.default"
                 @input="inputStatus('commonStatusSheet', key, commonStatus)"
+                :readonly="!setDice"
               />
             </td>
             <td class="revised">
@@ -413,7 +414,8 @@ td input {
   padding: 0;
   box-sizing: border-box;
 }
-.unedit {
+.unedit,
+input[readonly] {
   background-color: #c4c4c4;
 }
 </style>
