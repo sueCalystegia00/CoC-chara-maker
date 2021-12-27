@@ -3,7 +3,7 @@
     <div class="title">
       <h2>ステータス</h2>
     </div>
-    <div class="dice-area">
+    <div v-if="editable" class="dice-area">
       <button class="dice-button" @click="diceroll"></button>
       <p>👈 ランダム設定</p>
     </div>
@@ -19,7 +19,7 @@
         </thead>
         <tbody>
           <tr
-            v-for="(commonStatus, key) in getStatus('commonStatusSheet')"
+            v-for="(commonStatus, key) in statusList.commonStatusSheet"
             :key="key"
             class="common-status status-row"
           >
@@ -29,6 +29,7 @@
                 type="number"
                 v-model="commonStatus.default"
                 @input="inputStatus('commonStatusSheet', key, commonStatus)"
+                :readonly="!editable"
               />
             </td>
             <td class="revised">
@@ -55,7 +56,7 @@
         </thead>
         <tbody>
           <tr
-            v-for="(calclatedStatus, key) in getStatus('calclatedStatusSheet')"
+            v-for="(calclatedStatus, key) in statusList.calclatedStatusSheet"
             :key="key"
             class="calc-status status-row"
           >
@@ -77,7 +78,7 @@
             </td>
           </tr>
           <tr
-            v-for="(specStatus, key) in getStatus('specStatusSheet')"
+            v-for="(specStatus, key) in statusList.specStatusSheet"
             :key="key"
             class="spec-status status-row"
           >
@@ -95,15 +96,17 @@
 </template>
 
 <script>
-import { mapState, mapGetters } from "vuex";
+import { mapState } from "vuex";
 export default {
   name: "Status",
+  props: {
+    editable: Boolean,
+  },
   data() {
     return {};
   },
   computed: {
     ...mapState(["statusList"]),
-    ...mapGetters(["getStatus"]),
     HPobject() {
       return [
         this.statusList.commonStatusSheet.constitution.value,
@@ -411,7 +414,8 @@ td input {
   padding: 0;
   box-sizing: border-box;
 }
-.unedit {
+.unedit,
+input[readonly] {
   background-color: #c4c4c4;
 }
 </style>
