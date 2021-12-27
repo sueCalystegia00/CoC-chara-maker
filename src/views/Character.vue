@@ -1,5 +1,6 @@
 <template>
   <div class="character">
+    <p>URLをコピーしてキャラシートを共有できます</p>
     <Profile />
     <JobSelector />
     <Status />
