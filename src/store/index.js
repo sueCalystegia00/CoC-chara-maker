@@ -8,6 +8,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    characterId: null,
     profile: {
       name: "",
       gender: "",
@@ -45,6 +46,7 @@ export default new Vuex.Store({
     },
   },
   mutations: {
+    setCharacterId: (state, payload) => (state.characterId = payload),
     setProfile: (state, { key, value }) => (state.profile[key] = value),
     setJobName: (state, payload) => (state.jobName = payload),
     setStatus: (state, { type, key, values }) => {
@@ -94,7 +96,15 @@ export default new Vuex.Store({
           });
         });
       });
-      console.log(doc.data());
+    },
+    setCharactersSheetToFirestore: async ({ state, commit }) => {
+      const res = await db.collection("CharacterSheets").add({
+        profile: state.profile,
+        jobName: state.jobName,
+        statusList: state.statusList,
+        abilityList: state.abilityList,
+      });
+      commit("setCharacterId", res.id);
     },
   },
   modules: {},
