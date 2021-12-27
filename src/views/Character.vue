@@ -5,6 +5,12 @@
     <Status />
     <SkillSetter />
     <ChatPalette />
+    <div class="setter">
+      <div class="update-button-wrapper">
+        <p>キャラシートを更新しますか？</p>
+        <button @click="updateCharacter">更新</button>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -27,6 +33,11 @@ export default {
       this.$route.query.id
     );
   },
+  methods: {
+    updateCharacter() {
+      this.$store.dispatch("updateCharactersSheetInFirestore");
+    },
+  },
 };
 </script>
 
@@ -44,25 +55,52 @@ export default {
   box-sizing: border-box;
 }
 
-.describe {
-  width: 100%;
+.update-button-wrapper button {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
+  position: relative;
+  margin: 0 auto;
+  padding: 1em 2em;
+  width: 300px;
+  color: #333;
+  font-size: 18px;
+  font-weight: 700;
+  background-color: #cccccc;
+  transition: 0.3s;
 }
 
-.sticky {
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
-  width: 100%;
-  padding: 10px 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 5px;
-  box-sizing: border-box;
-  background-color: #ffffff;
-  z-index: 999;
+.update-button-wrapper button::before {
+  content: "";
+  position: absolute;
+  top: calc(50% - 2px);
+  right: 1em;
+  transform: translateY(calc(-50% - 2px)) rotate(30deg);
+  width: 12px;
+  height: 2px;
+  background-color: #2285b1;
+  transition: 0.3s;
+}
+
+.update-button-wrapper button::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 1em;
+  transform: translateY(-50%);
+  width: 70px;
+  height: 2px;
+  background-color: #2285b1;
+  transition: 0.3s;
+}
+
+.update-button-wrapper button:hover {
+  text-decoration: none;
+  background-color: #bbbbbb;
+}
+
+.update-button-wrapper button:hover::before,
+.update-button-wrapper button:hover::after {
+  right: 0.5em;
 }
 </style>

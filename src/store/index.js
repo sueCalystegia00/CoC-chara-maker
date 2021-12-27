@@ -67,6 +67,8 @@ export default new Vuex.Store({
     getCharactersSheetFromFirestore: async ({ commit }, id) => {
       const doc = await db.collection("CharacterSheets").doc(id).get();
       if (!doc.data()) return;
+      // ID設定
+      commit("setCharacterId", id);
       // プロフィール設定
       Object.keys(doc.data().profile).map((keyName) => {
         commit("setProfile", {
@@ -105,6 +107,20 @@ export default new Vuex.Store({
         abilityList: state.abilityList,
       });
       commit("setCharacterId", res.id);
+    },
+    updateCharactersSheetInFirestore: async ({ state }) => {
+      await db
+        .collection("CharacterSheets")
+        .doc(state.characterId)
+        .update({
+          profile: state.profile,
+          jobName: state.jobName,
+          statusList: state.statusList,
+          abilityList: state.abilityList,
+        })
+        .then(() => {
+          alert("更新しました！");
+        });
     },
   },
   modules: {},
