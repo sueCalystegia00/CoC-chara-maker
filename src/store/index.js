@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
-
+import { db } from "../main";
 import statusListData from "@/assets/json/statusList.json";
 import abilityListData from "@/assets/json/abilityList.json";
 
@@ -62,6 +62,12 @@ export default new Vuex.Store({
         !state.abilityList[type][key].setPalette;
     },
   },
-  actions: {},
+  actions: {
+    getCharactersSheetFromFirestore: async (context) => {
+      console.log(context.state.jobName);
+      const doc = await db.collection("CharacterSheets").doc("test").get();
+      console.log(doc.data());
+    },
+  },
   modules: {},
 });
