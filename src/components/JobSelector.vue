@@ -3,13 +3,19 @@
     <div class="job">
       <div class="label">職業</div>
       <v-select
+        v-if="editable"
         class="job-select"
         @input="setSelectedJobName"
         :options="Object.keys(jobsList)"
         :value="jobName"
       ></v-select>
+      <div v-else class="job-select preview">
+        {{ jobName }}
+      </div>
     </div>
-    <div class="job-skill-sheet" v-show="jobSkills">{{ jobSkills }}</div>
+    <div v-if="editable" class="job-skill-sheet" v-show="jobSkills">
+      {{ jobSkills }}
+    </div>
   </div>
 </template>
 
@@ -22,6 +28,9 @@ export default {
   name: "JobSelector",
   components: {
     vSelect,
+  },
+  props: {
+    editable: Boolean,
   },
   data() {
     return {
@@ -76,6 +85,14 @@ export default {
 }
 .job-select >>> .vs__dropdown-toggle {
   height: 100%;
+}
+.preview {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0 10px;
+  font-weight: bold;
+  border: 1px solid #cdcdcd;
 }
 .job-skill-sheet {
   width: 100%;
