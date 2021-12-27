@@ -4,7 +4,7 @@
       <p>クトゥルフキャラシートを作成しよう</p>
       <p>👇</p>
     </div>
-    <Status />
+    <Status setDice />
     <div class="sticky">
       <JobSelector />
       <SkillPointsChecker />

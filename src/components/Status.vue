@@ -3,7 +3,7 @@
     <div class="title">
       <h2>ステータス</h2>
     </div>
-    <div class="dice-area">
+    <div v-if="setDice" class="dice-area">
       <button class="dice-button" @click="diceroll"></button>
       <p>👈 ランダム設定</p>
     </div>
@@ -98,6 +98,9 @@
 import { mapState } from "vuex";
 export default {
   name: "Status",
+  props: {
+    setDice: Boolean,
+  },
   data() {
     return {};
   },
