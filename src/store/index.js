@@ -64,8 +64,8 @@ export default new Vuex.Store({
     },
   },
   actions: {
-    getCharactersSheetFromFirestore: async ({ commit }) => {
-      const doc = await db.collection("CharacterSheets").doc("test").get();
+    getCharactersSheetFromFirestore: async ({ commit }, id) => {
+      const doc = await db.collection("CharacterSheets").doc(id).get();
       if (!doc.data()) return;
       // プロフィール設定
       Object.keys(doc.data().profile).map((keyName) => {

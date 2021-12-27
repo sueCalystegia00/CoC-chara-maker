@@ -1,15 +1,24 @@
 <template>
-  <div class="character">キャラシだよ</div>
+  <div class="character">
+    キャラシだよ
+    <Status />
+  </div>
 </template>
 
 <script>
 // @ is an alias to /src
-
+import Status from "@/components/Status.vue";
 export default {
   name: "Character",
-  components: {},
+  components: { Status },
   data() {
     return {};
+  },
+  created() {
+    this.$store.dispatch(
+      "getCharactersSheetFromFirestore",
+      this.$route.query.id
+    );
   },
 };
 </script>
