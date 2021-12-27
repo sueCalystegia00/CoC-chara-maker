@@ -19,7 +19,7 @@
         </thead>
         <tbody>
           <tr
-            v-for="(commonStatus, key) in getStatus('commonStatusSheet')"
+            v-for="(commonStatus, key) in statusList.commonStatusSheet"
             :key="key"
             class="common-status status-row"
           >
@@ -55,7 +55,7 @@
         </thead>
         <tbody>
           <tr
-            v-for="(calclatedStatus, key) in getStatus('calclatedStatusSheet')"
+            v-for="(calclatedStatus, key) in statusList.calclatedStatusSheet"
             :key="key"
             class="calc-status status-row"
           >
@@ -77,7 +77,7 @@
             </td>
           </tr>
           <tr
-            v-for="(specStatus, key) in getStatus('specStatusSheet')"
+            v-for="(specStatus, key) in statusList.specStatusSheet"
             :key="key"
             class="spec-status status-row"
           >
@@ -95,7 +95,7 @@
 </template>
 
 <script>
-import { mapState, mapGetters } from "vuex";
+import { mapState } from "vuex";
 export default {
   name: "Status",
   data() {
@@ -103,7 +103,6 @@ export default {
   },
   computed: {
     ...mapState(["statusList"]),
-    ...mapGetters(["getStatus"]),
     HPobject() {
       return [
         this.statusList.commonStatusSheet.constitution.value,

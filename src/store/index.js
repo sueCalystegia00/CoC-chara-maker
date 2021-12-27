@@ -24,7 +24,6 @@ export default new Vuex.Store({
     },
   },
   getters: {
-    getStatus: (state) => (sheet) => state.statusList[sheet],
     getUsedPoint: (state) => (pointType) => {
       const totalUsedPoint = Object.keys(state.abilityList).reduce(
         (totalUsedPoint, categoryName) => {
@@ -63,9 +62,38 @@ export default new Vuex.Store({
     },
   },
   actions: {
-    getCharactersSheetFromFirestore: async (context) => {
-      console.log(context.state.jobName);
+    getCharactersSheetFromFirestore: async ({ commit }) => {
       const doc = await db.collection("CharacterSheets").doc("test").get();
+      if (!doc.data()) return;
+      // プロフィール設定
+      Object.keys(doc.data().profile).map((keyName) => {
+        commit("setProfile", {
+          key: keyName,
+          value: doc.data().profile[keyName],
+        });
+      });
+      // 職業設定
+      commit("setJobName", doc.data().jobName);
+      // ステータス設定
+      Object.keys(doc.data().statusList).map((typeName) => {
+        Object.keys(doc.data().statusList[typeName]).map((keyName) => {
+          commit("setStatus", {
+            type: typeName,
+            key: keyName,
+            values: doc.data().statusList[typeName][keyName],
+          });
+        });
+      });
+      // 技能設定
+      Object.keys(doc.data().abilityList).map((typeName) => {
+        Object.keys(doc.data().abilityList[typeName]).map((keyName) => {
+          commit("setSkill", {
+            type: typeName,
+            key: keyName,
+            values: doc.data().abilityList[typeName][keyName],
+          });
+        });
+      });
       console.log(doc.data());
     },
   },

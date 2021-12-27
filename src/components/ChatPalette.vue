@@ -79,6 +79,7 @@ export default {
         divider +
         "【持ち物】\n" +
         this.profile.belongings;
+      this.$store.dispatch("getCharactersSheetFromFirestore");
     },
     createChatPalette() {
       const initText = "CCB<=\nCCB<={SAN} SANチェック\n";
