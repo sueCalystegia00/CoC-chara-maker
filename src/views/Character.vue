@@ -1,16 +1,23 @@
 <template>
   <div class="character">
-    キャラシだよ
+    <Profile />
+    <JobSelector />
     <Status />
+    <SkillSetter />
+    <ChatPalette />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
+import Profile from "@/components/Profile.vue";
+import JobSelector from "@/components/JobSelector.vue";
 import Status from "@/components/Status.vue";
+import SkillSetter from "@/components/SkillSetter.vue";
+import ChatPalette from "@/components/ChatPalette.vue";
 export default {
   name: "Character",
-  components: { Status },
+  components: { Status, Profile, JobSelector, SkillSetter, ChatPalette },
   data() {
     return {};
   },

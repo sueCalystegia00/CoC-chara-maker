@@ -7,31 +7,37 @@
           <th class="label-name">名前</th>
           <td colspan="3">
             <input
+              v-if="edit"
               type="text"
               class="input-name"
               v-model="profile.name"
               @input="setProfileData('name', profile.name)"
             />
+            <div v-else class="input-name preview">{{ profile.name }}</div>
           </td>
         </tr>
         <tr class="md-row">
           <th class="label-gender">性別</th>
           <td>
             <v-select
+              v-if="edit"
               class="input-gender"
               :options="['男性', '女性', '不詳']"
               v-model="profile.gender"
               @input="setProfileData('gender', profile.gender)"
             ></v-select>
+            <div v-else class="input-gender preview">{{ profile.gender }}</div>
           </td>
           <th class="label-age">年齢</th>
           <td>
             <input
+              v-if="edit"
               type="number"
               class="input-gender"
               v-model="profile.age"
               @input="setProfileData('age', profile.age)"
             />
+            <div v-else class="input-gender preview">{{ profile.age }}</div>
           </td>
         </tr>
         <tr class="lg-row">
@@ -68,6 +74,9 @@ export default {
   name: "Profile",
   components: {
     vSelect,
+  },
+  props: {
+    edit: Boolean,
   },
   computed: {
     ...mapState(["profile"]),
@@ -148,5 +157,8 @@ textarea {
   padding: 10px;
   overflow-y: scroll;
   resize: none;
+}
+.preview {
+  font-weight: bold;
 }
 </style>
