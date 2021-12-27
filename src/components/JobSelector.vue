@@ -3,7 +3,7 @@
     <div class="job">
       <div class="label">職業</div>
       <v-select
-        v-if="edit"
+        v-if="editable"
         class="job-select"
         @input="setSelectedJobName"
         :options="Object.keys(jobsList)"
@@ -13,7 +13,7 @@
         {{ jobName }}
       </div>
     </div>
-    <div v-if="edit" class="job-skill-sheet" v-show="jobSkills">
+    <div v-if="editable" class="job-skill-sheet" v-show="jobSkills">
       {{ jobSkills }}
     </div>
   </div>
@@ -30,7 +30,7 @@ export default {
     vSelect,
   },
   props: {
-    edit: Boolean,
+    editable: Boolean,
   },
   data() {
     return {

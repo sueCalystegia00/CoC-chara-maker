@@ -7,7 +7,7 @@
           <th class="label-name">名前</th>
           <td colspan="3">
             <input
-              v-if="edit"
+              v-if="editable"
               type="text"
               class="input-name"
               v-model="profile.name"
@@ -20,7 +20,7 @@
           <th class="label-gender">性別</th>
           <td>
             <v-select
-              v-if="edit"
+              v-if="editable"
               class="input-gender"
               :options="['男性', '女性', '不詳']"
               v-model="profile.gender"
@@ -31,7 +31,7 @@
           <th class="label-age">年齢</th>
           <td>
             <input
-              v-if="edit"
+              v-if="editable"
               type="number"
               class="input-gender"
               v-model="profile.age"
@@ -76,7 +76,7 @@ export default {
     vSelect,
   },
   props: {
-    edit: Boolean,
+    editable: Boolean,
   },
   computed: {
     ...mapState(["profile"]),

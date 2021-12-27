@@ -3,7 +3,7 @@
     <div class="title">
       <h2>ステータス</h2>
     </div>
-    <div v-if="edit" class="dice-area">
+    <div v-if="editable" class="dice-area">
       <button class="dice-button" @click="diceroll"></button>
       <p>👈 ランダム設定</p>
     </div>
@@ -29,7 +29,7 @@
                 type="number"
                 v-model="commonStatus.default"
                 @input="inputStatus('commonStatusSheet', key, commonStatus)"
-                :readonly="!edit"
+                :readonly="!editable"
               />
             </td>
             <td class="revised">
@@ -100,7 +100,7 @@ import { mapState } from "vuex";
 export default {
   name: "Status",
   props: {
-    edit: Boolean,
+    editable: Boolean,
   },
   data() {
     return {};

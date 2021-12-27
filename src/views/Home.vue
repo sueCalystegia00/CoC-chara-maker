@@ -4,13 +4,13 @@
       <p>クトゥルフキャラシートを作成しよう</p>
       <p>👇</p>
     </div>
-    <Status edit />
+    <Status editable />
     <div class="sticky">
-      <JobSelector edit />
+      <JobSelector editable />
       <SkillPointsChecker />
     </div>
     <SkillSetter />
-    <Profile />
+    <Profile editable />
     <ChatPalette />
   </div>
 </template>
