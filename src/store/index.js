@@ -1,5 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import firebase from "firebase/compat/app";
 import { db } from "../main";
 import statusListData from "@/assets/json/statusList.json";
 import abilityListData from "@/assets/json/abilityList.json";
@@ -101,6 +102,8 @@ export default new Vuex.Store({
     },
     setCharactersSheetToFirestore: async ({ state, commit }) => {
       const res = await db.collection("CharacterSheets").add({
+        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+        updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
         profile: state.profile,
         jobName: state.jobName,
         statusList: state.statusList,
@@ -113,6 +116,7 @@ export default new Vuex.Store({
         .collection("CharacterSheets")
         .doc(state.characterId)
         .update({
+          updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
           profile: state.profile,
           jobName: state.jobName,
           statusList: state.statusList,
