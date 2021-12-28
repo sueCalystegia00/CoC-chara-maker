@@ -67,6 +67,7 @@ export default {
   display: flex;
   flex-direction: row;
   align-items: center;
+  gap: 2px;
 }
 .job .label {
   width: 20%;
@@ -82,6 +83,7 @@ export default {
 .job-select {
   width: 80%;
   height: 100%;
+  box-sizing: border-box;
 }
 .job-select >>> .vs__dropdown-toggle {
   height: 100%;
