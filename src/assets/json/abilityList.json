@@ -237,7 +237,7 @@
       "value": 25,
       "setPalette": false
     },
-    "制作": {
+    "製作": {
       "default": 5,
       "option": "",
       "jobPoint": 0,
@@ -330,7 +330,7 @@
       "value": null,
       "setPalette": false
     },
-    "言語": {
+    "他の言語": {
       "default": 1,
       "option": "",
       "jobPoint": 0,

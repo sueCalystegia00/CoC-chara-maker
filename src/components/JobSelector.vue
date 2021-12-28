@@ -44,7 +44,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(["jobName"]),
+    ...mapState(["jobName", "abilityList"]),
     jobSkills() {
       if (!this.jobName)
         return {
@@ -79,6 +79,22 @@ export default {
         selectSkillsText: selectSkillsText,
         anySelectText: anySelectText,
       };
+    },
+  },
+  watch: {
+    jobName() {
+      if (!this.jobName) return;
+      Object.keys(this.abilityList).map((categoryName) => {
+        Object.keys(this.abilityList[categoryName]).map((skillName) => {
+          let palette =
+            this.jobsList[this.jobName]["職業技能"].includes(skillName);
+          this.$store.commit("setSkillPalette", {
+            type: categoryName,
+            key: skillName,
+            setPalette: palette,
+          });
+        });
+      });
     },
   },
   methods: {
