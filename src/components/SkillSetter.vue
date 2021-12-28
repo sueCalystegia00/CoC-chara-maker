@@ -104,6 +104,7 @@ export default {
         Number(skillValues.jobPoint) +
         Number(skillValues.intPoint) +
         Number(skillValues.adjustPoint);
+      setValues.setPalette = true;
       this.$store.commit("setSkill", {
         type: typeName,
         key: keyName,
