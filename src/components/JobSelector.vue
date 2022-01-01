@@ -13,8 +13,14 @@
         {{ jobName }}
       </div>
     </div>
-    <div v-if="editable" class="job-skill-sheet" v-show="jobSkills">
-      {{ jobSkills }}
+    <div
+      v-if="editable"
+      class="job-skill-sheet"
+      v-show="jobSkills.jobSkillsText"
+    >
+      <p>{{ jobSkills.jobSkillsText }}</p>
+      <p>{{ jobSkills.selectSkillsText }}</p>
+      <p>{{ jobSkills.anySelectText }}</p>
     </div>
   </div>
 </template>
@@ -38,10 +44,57 @@ export default {
     };
   },
   computed: {
-    ...mapState(["jobName"]),
+    ...mapState(["jobName", "abilityList"]),
     jobSkills() {
-      if (this.jobName == "") return null;
-      return this.jobsList[this.jobName];
+      if (!this.jobName)
+        return {
+          jobSkillsText: "",
+          selectSkillsText: "",
+        };
+      const jobSkillsText =
+        "【職業技能】" +
+        this.jobsList[this.jobName]["職業技能"]
+          .reduce((text, skill) => {
+            text += `${skill}, `;
+            return text;
+          }, "")
+          .slice(0, -2);
+      const selectSkillsText = this.jobsList[this.jobName].select
+        ? `【次から${this.jobsList[this.jobName].select.count}つ選択】` +
+          this.jobsList[this.jobName].select.choice
+            .reduce((text, skill) => {
+              text += `${skill}, `;
+              return text;
+            }, "")
+            .slice(0, -2)
+        : "";
+      const anySelectText = this.jobsList[this.jobName].anySelect
+        ? `＋個人あるいはその時代の特色的な技能としてさらに${
+            this.jobsList[this.jobName].anySelect
+          }つの技能`
+        : "";
+      //return this.jobsList[this.jobName];
+      return {
+        jobSkillsText: jobSkillsText,
+        selectSkillsText: selectSkillsText,
+        anySelectText: anySelectText,
+      };
+    },
+  },
+  watch: {
+    jobName() {
+      if (!this.jobName) return;
+      Object.keys(this.abilityList).map((categoryName) => {
+        Object.keys(this.abilityList[categoryName]).map((skillName) => {
+          let palette =
+            this.jobsList[this.jobName]["職業技能"].includes(skillName);
+          this.$store.commit("setSkillPalette", {
+            type: categoryName,
+            key: skillName,
+            setPalette: palette,
+          });
+        });
+      });
     },
   },
   methods: {
@@ -67,6 +120,7 @@ export default {
   display: flex;
   flex-direction: row;
   align-items: center;
+  gap: 2px;
 }
 .job .label {
   width: 20%;
@@ -82,6 +136,7 @@ export default {
 .job-select {
   width: 80%;
   height: 100%;
+  box-sizing: border-box;
 }
 .job-select >>> .vs__dropdown-toggle {
   height: 100%;
@@ -98,5 +153,9 @@ export default {
   width: 100%;
   background: #d3d3d3;
   line-height: 2rem;
+}
+.job-skill-sheet p {
+  line-height: 1rem;
+  font-size: 0.8rem;
 }
 </style>

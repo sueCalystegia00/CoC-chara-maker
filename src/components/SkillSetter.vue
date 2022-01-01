@@ -30,7 +30,7 @@
               <th
                 class="displayname"
                 :class="{ isSetPalette: skill.setPalette }"
-                @click="addPalette(category, skillName)"
+                @click="addPalette(category, skillName, !skill.setPalette)"
               >
                 {{ skillName }}
                 <input
@@ -104,16 +104,18 @@ export default {
         Number(skillValues.jobPoint) +
         Number(skillValues.intPoint) +
         Number(skillValues.adjustPoint);
+      setValues.setPalette = true;
       this.$store.commit("setSkill", {
         type: typeName,
         key: keyName,
         values: setValues,
       });
     },
-    addPalette(typeName, skillName) {
-      this.$store.commit("setSkillToPalette", {
+    addPalette(typeName, skillName, value) {
+      this.$store.commit("setSkillPalette", {
         type: typeName,
         key: skillName,
+        setPalette: value,
       });
     },
   },
